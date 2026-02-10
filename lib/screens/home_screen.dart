@@ -17,7 +17,7 @@ class HomeScreen extends StatelessWidget {
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             Text(
-              '住院醫師隨身助理',
+              '住院醫師隨身助理 v2.1',
               style: TextStyle(fontSize: 12, color: Colors.white70),
             ),
           ],
