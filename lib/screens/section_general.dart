@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../logic/general_principles.dart'; // 連結邏輯層
+import '../logic/general_principles.dart'; // 連結核心緒論邏輯
 
 class GeneralSection extends StatelessWidget {
   const GeneralSection({super.key});
@@ -484,10 +484,9 @@ class _NutritionCalculator extends StatefulWidget {
 
 class _NutritionCalculatorState extends State<_NutritionCalculator> {
   final _actualWeightCtrl = TextEditingController();
-  String _condition = 'General'; // 預設一般
+  String _condition = 'General';
   Map<String, String>? _result;
 
-  // 條件選單對應表
   final Map<String, String> _conditionMap = {
     'General': '一般術後 (General)',
     'ICU_Acute': 'ICU 急性期 (Acute Phase)',
@@ -500,7 +499,6 @@ class _NutritionCalculatorState extends State<_NutritionCalculator> {
   void _calculate() {
     double actual = double.tryParse(_actualWeightCtrl.text) ?? 0;
     if (actual == 0) return;
-
     setState(() {
       _result = GeneralPrinciples.calculateAdvancedNutrition(
         weight: actual,
@@ -509,7 +507,6 @@ class _NutritionCalculatorState extends State<_NutritionCalculator> {
     });
   }
 
-  // 顯示飲食質地 Dialog
   void _showDietTypesDialog() {
     var diets = GeneralPrinciples.getDietTypes();
     showDialog(
@@ -541,7 +538,6 @@ class _NutritionCalculatorState extends State<_NutritionCalculator> {
     );
   }
 
-  // 顯示重症指引 Dialog
   void _showICUGuideDialog() {
     var topics = ['EN vs PN', 'Refeeding Syndrome', 'Gastric Residual (GRV)'];
     showDialog(
@@ -613,7 +609,6 @@ class _NutritionCalculatorState extends State<_NutritionCalculator> {
               },
             ),
             const SizedBox(height: 10),
-
             if (_result != null)
               Container(
                 width: double.infinity,
@@ -642,7 +637,6 @@ class _NutritionCalculatorState extends State<_NutritionCalculator> {
                   ],
                 ),
               ),
-
             const SizedBox(height: 20),
             const Divider(),
             Row(

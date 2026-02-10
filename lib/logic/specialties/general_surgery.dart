@@ -1,7 +1,5 @@
 // 檔案路徑: lib/logic/specialties/general_surgery.dart
 
-/// Part II: 一般外科 (General Surgery)
-/// 涵蓋《住院醫師醫療手冊》Ch9-Ch23
 class GeneralSurgeryLogic {
   // ==========================================
   // Ch9: 甲狀腺 (Thyroid)
@@ -27,10 +25,7 @@ class GeneralSurgeryLogic {
       return {
         "status": "🚨 [極度危險] 術後血腫壓迫氣管 (Hematoma)",
         "action":
-            "1. 立即通知主治醫師！\n"
-            "2. 【不要等送開刀房】\n"
-            "3. 立即在床邊打開傷口、清除血塊減壓！\n"
-            "4. 解除壓迫後再送 OR 止血。",
+            "1. 立即通知主治醫師！\n2. 【不要等送開刀房】\n3. 立即在床邊打開傷口、清除血塊減壓！\n4. 解除壓迫後再送 OR 止血。",
         "isEmergency": true,
       };
     }
@@ -42,9 +37,7 @@ class GeneralSurgeryLogic {
   }
 
   static String getHungryBoneWarning() {
-    return "🦴 [注意] 飢餓骨症候群 (Hungry Bone Syndrome)\n"
-        "原因: 術後 iPTH 驟降，鈣離子大量回流至骨頭。\n"
-        "處置: 密切監測 Ca，發生抽筋時給予 IV 鈣劑，必要時調整透析液鈣濃度。";
+    return "🦴 [注意] 飢餓骨症候群 (Hungry Bone Syndrome)\n原因: 術後 iPTH 驟降，鈣離子大量回流至骨頭。\n處置: 密切監測 Ca，發生抽筋時給予 IV 鈣劑。";
   }
 
   static Map<String, String> checkRenalHyperparathyroidism({
@@ -55,8 +48,7 @@ class GeneralSurgeryLogic {
       return {
         "result": "✅ 符合手術適應症",
         "detail":
-            "iPTH > 800 pg/mL 且伴隨症狀 (骨痛/搔癢/高血鈣)。\n"
-            "建議術式: Total Parathyroidectomy + Autotransplantation。",
+            "iPTH > 800 pg/mL 且伴隨症狀 (骨痛/搔癢/高血鈣)。\n建議術式: Total Parathyroidectomy + Autotransplantation。",
       };
     } else if (iPTH > 800) {
       return {"result": "⚠️ 數值達標但無症狀", "detail": "可考慮手術，需會診腎臟科評估透析狀況。"};
@@ -85,17 +77,15 @@ class GeneralSurgeryLogic {
   }
 
   static Map<String, String> manageMastitis({required bool isLactational}) {
-    if (isLactational) {
-      return {
-        "type": "哺乳期 (Lactational)",
-        "action": "1. 抗生素 (Dicloxacillin)。\n2. 持續排空乳汁。\n3. 膿瘍則引流。",
-      };
-    } else {
-      return {
-        "type": "非哺乳期 (Chronic)",
-        "action": "1. 廣效抗生素 + 引流。\n2. 反覆發作考慮切除乳管系統。",
-      };
-    }
+    return isLactational
+        ? {
+            "type": "哺乳期 (Lactational)",
+            "action": "1. 抗生素 (Dicloxacillin)。\n2. 持續排空乳汁。\n3. 膿瘍則引流。",
+          }
+        : {
+            "type": "非哺乳期 (Chronic)",
+            "action": "1. 廣效抗生素 + 引流。\n2. 反覆發作考慮切除乳管系統。",
+          };
   }
 
   // ==========================================
@@ -505,28 +495,17 @@ class GeneralSurgeryLogic {
   // ==========================================
   // Ch23: 胰臟癌 (Pancreatic Cancer)
   // ==========================================
-
-  static List<String> getPancreaticRiskFactors() {
-    return [
-      "1. 抽菸 (風險 x 1.7倍)",
-      "2. 慢性胰臟炎 (酒精/遺傳)",
-      "3. 遺傳突變 (BRCA1/2, Lynch)",
-      "4. 胰囊腫、糖尿病、肥胖",
-    ];
-  }
+  static List<String> getPancreaticRiskFactors() => [
+    "1. 抽菸 (風險 x 1.7倍)",
+    "2. 慢性胰臟炎 (酒精/遺傳)",
+    "3. 遺傳突變 (BRCA1/2, Lynch)",
+    "4. 胰囊腫、糖尿病、肥胖",
+  ];
 
   static String getPancreaticSymptoms(String location) {
-    if (location.contains('頭')) {
-      return "📍 胰頭癌 (Pancreatic Head):\n"
-          "1. 無痛性黃疸 (Painless jaundice)\n"
-          "2. 灰白便 (Acholic stool)\n"
-          "3. 茶色尿、皮膚搔癢";
-    } else {
-      return "📍 胰體尾癌 (Body/Tail):\n"
-          "1. 上腹痛 (放射至背部)\n"
-          "2. 體重減輕\n"
-          "3. 新發生的糖尿病";
-    }
+    if (location.contains('頭'))
+      return "📍 胰頭癌 (Pancreatic Head):\n1. 無痛性黃疸 (Painless jaundice)\n2. 灰白便 (Acholic stool)\n3. 茶色尿、皮膚搔癢";
+    return "📍 胰體尾癌 (Body/Tail):\n1. 上腹痛 (放射至背部)\n2. 體重減輕\n3. 新發生的糖尿病";
   }
 
   static Map<String, String> getPancreaticTreatmentStrategy(String type) {
@@ -559,23 +538,268 @@ class GeneralSurgeryLogic {
     }
   }
 
-  /// 胰液滲漏 (POPF) 評估計算機
   static Map<String, dynamic> assessPOPF({
     required double serumAmylase,
     required double drainAmylase,
   }) {
-    // 定義: Drain Amylase >= 3 * Serum Amylase
     bool isLeak = drainAmylase >= (serumAmylase * 3);
-
-    if (isLeak) {
+    if (isLeak)
       return {
         "isLeak": true,
         "status": "🚨 符合胰液滲漏定義 (POPF)",
         "action":
             "1. 保持引流管暢通。\n2. 考慮 Somatostatin analogues。\n3. 監測感染徵兆 (Fever, CRP)。",
       };
-    } else {
-      return {"isLeak": false, "status": "✅ 數值正常", "action": "持續觀察引流液性質與量。"};
+    return {"isLeak": false, "status": "✅ 數值正常", "action": "持續觀察引流液性質與量。"};
+  }
+
+  // ==========================================
+  // Ch24: 胰臟良性或低度惡性腫瘤 (Cystic & PNET)
+  // ==========================================
+  static Map<String, String> getCysticTumorInfo(String type) {
+    switch (type) {
+      case 'SCA (漿液性)':
+        return {
+          "desc": "蜂巢狀 (Honeycomb), 中心疤痕 (Central scar)。",
+          "risk": "極低 (Benign)",
+          "action": "觀察為主。有症狀或過大才切除。",
+        };
+      case 'MCN (黏液性)':
+        return {
+          "desc": "女性多。單/多房大囊腫，周邊蛋殼狀鈣化 (Eggshell)。",
+          "risk": "中高 (Malignant potential)",
+          "action": "建議手術切除。",
+        };
+      case 'IPMN (導管內)':
+        return {
+          "desc": "老年人。與胰管相通，分泌黏液。",
+          "risk": "依主胰管與特徵決定 (參見計算機)。",
+          "action": "Main duct型建議切除；Branch duct型依風險分級。",
+        };
+      case 'SPT (實質偽乳突)':
+        return {
+          "desc": "年輕女性。實質與囊性混合 (Solid/Cystic mix)。",
+          "risk": "低度惡性",
+          "action": "手術切除 (預後極佳)。",
+        };
+      default:
+        return {"desc": "", "risk": "", "action": ""};
     }
+  }
+
+  static Map<String, dynamic> checkIPMNManagement({
+    required double mainDuctSizeMm,
+    required bool hasJaundice,
+    required bool hasEnhancingSolid,
+    required double cystSizeCm,
+    required bool hasLymphNode,
+  }) {
+    if (hasJaundice || hasEnhancingSolid || mainDuctSizeMm >= 10)
+      return {
+        "risk": "🔴 High-Risk Stigmata",
+        "action": "建議直接手術 (Surgical Resection)",
+        "reason": "符合以下任一：黃疸, 增強實質成分, 主胰管 ≥ 10mm",
+      };
+    if (cystSizeCm >= 3.0 ||
+        (mainDuctSizeMm >= 5 && mainDuctSizeMm < 10) ||
+        hasLymphNode)
+      return {
+        "risk": "🟠 Worrisome Features",
+        "action": "建議做 EUS 進一步評估",
+        "reason": "符合以下任一：囊腫≥3cm, 主胰管 5-9mm, 淋巴結腫大",
+      };
+    return {
+      "risk": "🟢 Low Risk (BD-IPMN)",
+      "action": "觀察追蹤 (Surveillance)",
+      "reason": "無上述高風險因子",
+    };
+  }
+
+  static String getPNETSyndrome(String type) {
+    switch (type) {
+      case 'Insulinoma':
+        return "Whipple Triad:\n1. 低血糖症狀\n2. 血糖 < 50 mg/dL\n3. 給糖後緩解";
+      case 'Gastrinoma':
+        return "Zollinger-Ellison Syndrome:\n難治性潰瘍、腹瀉。\n好發於 Gastrinoma Triangle。";
+      case 'Glucagonoma':
+        return "4D Syndrome:\nDermatitis (紅斑), Diabetes, Diarrhea, DVT";
+      case 'VIPoma':
+        return "WDHA Syndrome:\nWatery Diarrhea, Hypokalemia, Achlorhydria (無胃酸)";
+      default:
+        return "";
+    }
+  }
+
+  static Map<String, dynamic> checkPNETManagement({
+    required bool isFunctional,
+    required double sizeCm,
+  }) {
+    if (isFunctional)
+      return {"action": "建議手術切除", "detail": "功能性 PNET 無論大小，建議切除以解除症狀。"};
+    if (sizeCm > 2.0)
+      return {"action": "建議手術切除", "detail": "腫瘤 > 2cm，具惡性潛能，建議標準切除。"};
+    return {
+      "action": "可考慮觀察 (爭議)",
+      "detail": "< 2cm 無症狀者可考慮追蹤，或行 Enucleation (若位置適合)。",
+    };
+  }
+
+  // ==========================================
+  // Ch25: 腹壁疝氣 (Abdominal Wall Hernia)
+  // ==========================================
+  static List<String> getHerniaTypes() {
+    return [
+      "腹股溝疝氣 (Inguinal): 最常見。",
+      "臍疝氣 (Umbilical): 臍環缺損。",
+      "股疝氣 (Femoral): 股環缺損，女性多，嵌頓風險高。",
+      "切口疝氣 (Incisional): 術後傷口癒合不良。",
+      "上腹疝氣 (Epigastric): 白線缺損。",
+    ];
+  }
+
+  static Map<String, String> getMeshPlacementInfo(String layer) {
+    switch (layer) {
+      case 'Onlay':
+        return {
+          "pos": "皮下，前筋膜上方 (Pre-fascia)",
+          "pros": "技術簡單，不需大範圍剝離。",
+          "cons": "傷口感染風險高，易產生 Seroma，復發率稍高。",
+        };
+      case 'Inlay':
+        return {
+          "pos": "縫合於缺口內緣 (Bridging)",
+          "pros": "當筋膜無法關閉時的替代方案。",
+          "cons": "結構最弱，復發率最高，不建議常規使用。",
+        };
+      case 'Sublay':
+        return {
+          "pos": "腹直肌後方 (Retromuscular / Rives-Stoppa)",
+          "pros": "黃金標準。腹內壓有助固定，感染率低，復發率低。",
+          "cons": "解剖剝離範圍大，技術要求高。",
+        };
+      case 'IPOM':
+        return {
+          "pos": "腹腔內 (Intraperitoneal)",
+          "pros": "腹腔鏡標準術式，恢復快。",
+          "cons": "需用防沾黏網膜 (Dual mesh)，費用較高。",
+        };
+      default:
+        return {"pos": "", "pros": "", "cons": ""};
+    }
+  }
+
+  static Map<String, dynamic> checkStrangulatedHernia({
+    required bool isStrangulated,
+    required bool isBowelNecrosis,
+  }) {
+    if (!isStrangulated)
+      return {
+        "status": "🟢 嵌頓 (Incarcerated) 但無絞扼",
+        "action": "儘速嘗試徒手復位 (Reduction)。\n若成功則擇期手術；若失敗則緊急手術。",
+        "mesh": "可使用 Mesh (標準修補)。",
+      };
+    if (isBowelNecrosis)
+      return {
+        "status": "🔴 絞扼 (Strangulated) + 腸壞死",
+        "action": "緊急手術 + 腸切除吻合 (Resection & Anastomosis)。",
+        "mesh":
+            "❌ 避免使用人工網膜 (Mesh)！\n原因：感染風險極高。\n建議：僅做組織縫合 (Tissue repair) 或生物性網膜。",
+      };
+    return {
+      "status": "🟠 絞扼 (Strangulated) 但腸道存活",
+      "action": "緊急手術解除壓迫，觀察腸色恢復。",
+      "mesh": "⚠️ 謹慎使用 Mesh。\n若無腹水汙染可考慮，但需徹底沖洗。",
+    };
+  }
+
+  // ==========================================
+  // Ch26: 鼠蹊部疝氣手術 (Inguinal Hernia) - Updated!
+  // ==========================================
+
+  // 1. 分類詳解 (Text-rich)
+  static List<Map<String, String>> getInguinalHerniaInfo() {
+    return [
+      {
+        "title": "直接型 (Direct)",
+        "desc":
+            "源於腹股溝管後壁 (Hesselbach's triangle) 弱化。\n不經過內環開口，直接向前鼓出。\n多發生於老年男性，極少嵌頓。",
+      },
+      {
+        "title": "間接型 (Indirect)",
+        "desc":
+            "源於胚胎期 Processus vaginalis 閉合不全。\n經內環口進入腹股溝管，可延伸至陰囊。\n最常見類型 (無論小孩或成人)。",
+      },
+      {
+        "title": "股疝氣 (Femoral)",
+        "desc":
+            "經股管 (Femoral canal) 突出，位於腹股溝韌帶下方。\n女性多見，因開口狹窄，極易絞扼 (Strangulation)。\n⚠️ 需提高警覺！",
+      },
+    ];
+  }
+
+  // 2. 決策樹 (Algorithm)
+  static Map<String, dynamic> checkHerniaSurgeryIndication({
+    required bool isStrangulated,
+    required bool isSymptomatic,
+  }) {
+    if (isStrangulated) {
+      return {
+        "status": "🔴 絞扼性 (Strangulated)",
+        "action": "緊急手術 (Emergency Surgery)",
+        "detail": "可能需切除壞死腸段。若有感染，避免使用 Mesh。",
+      };
+    }
+    if (isSymptomatic) {
+      return {
+        "status": "🟠 有症狀 (Symptomatic) / 不可復位",
+        "action": "建議常規手術 (Elective Repair)",
+        "detail": "預防未來發生腸阻塞或絞扼。建議儘早安排。",
+      };
+    }
+    return {
+      "status": "🟢 無症狀 (Asymptomatic)",
+      "action": "觀察追蹤 (Watchful Waiting) 或 擇期手術",
+      "detail": "嵌頓機率低 (<3%/年)。若不影響生活可先觀察。",
+    };
+  }
+
+  // 3. 術式選擇指南
+  static Map<String, String> getHerniaTechniqueGuide(String condition) {
+    switch (condition) {
+      case 'Unilateral': // 單側原發
+        return {
+          "rec": "Lichtenstein Repair 或 內視鏡 (TEP/TAPP)",
+          "desc": "兩者復發率相當。內視鏡術後疼痛較少、恢復較快。",
+        };
+      case 'Bilateral': // 雙側
+        return {
+          "rec": "內視鏡 (TEP/TAPP) 或 Stoppa Repair",
+          "desc": "內視鏡可由同一傷口修補雙側，效益最高。",
+        };
+      case 'Recurrent': // 復發型
+        return {
+          "rec": "建議改變入路 (Approach)",
+          "desc": "若前次做開放式(前入路) -> 這次改內視鏡(後入路)。\n若前次做內視鏡 -> 這次改開放式。",
+        };
+      default:
+        return {"rec": "", "desc": ""};
+    }
+  }
+
+  // 4. 圍手術期須知 (Text-rich)
+  static String getHerniaPerioperativeInfo() {
+    return """
+1. 預防性抗生素：
+   - 原則上屬潔淨傷口 (Clean wound)，不需常規給予。
+   - 需給予者：高齡、肥胖、糖尿病、免疫抑制、複雜性疝氣。
+
+2. 術前準備：
+   - 除毛：建議使用剪除或電動推剪 (Clipping)，優於剃刀 (Shaving)，以減少微小傷口感染。
+   - 導尿管：一般不需。預期手術時間長或復發性疝氣可考慮。
+
+3. 術後照護：
+   - 活動：內視鏡術後隔日可恢復輕便工作。傳統手術建議 2-3 週後再負重。
+   - 併發症：血腫、尿滯留 (最常見)、慢性疼痛、極少見的睪丸萎縮。
+""";
   }
 }
