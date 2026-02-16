@@ -83600,7 +83600,7 @@ $0(){this.a.ai(t.Pu).f.Xu(B.Rq)},
 $S:0}
 A.a20.prototype={
 $1(a){var s=null
-return A.bW(A.c([A.dn(!1,B.c2,s,s,s,s,s,s,new A.a2_(a),s,s)],t.p),s,B.R_,B.XZ)},
+return A.bW(A.c([A.dn(!1,B.c2,s,s,s,s,s,s,new A.a2_(a),s,s)],t.p),s,B.R_,B.XY)},
 $S:9}
 A.a2_.prototype={
 $0(){A.aQ(this.a,!1).aX(null)
@@ -83847,7 +83847,7 @@ s.f=A.aHj(s.e,this.b)},
 $S:0}
 A.amg.prototype={
 $1(a){var s=null,r=A.eb(A.axO(new A.amd(this.a),6,new A.ame()),400,17976931348623157e292)
-return A.bW(A.c([A.dn(!1,B.c2,s,s,s,s,s,s,new A.amf(a),s,s)],t.p),s,r,B.XS)},
+return A.bW(A.c([A.dn(!1,B.c2,s,s,s,s,s,s,new A.amf(a),s,s)],t.p),s,r,B.XR)},
 $S:9}
 A.ame.prototype={
 $2(a,b){return B.aU},
@@ -83917,7 +83917,7 @@ A.Oh.prototype={
 a2e(){this.a3(new A.ai2(this))},
 H(a){var s,r,q,p,o=this,n=null
 $.a3.k4$.push(new A.ai7(o))
-s=A.c([A.aea(n,new A.ai8(o),B.I_,B.YM,B.Yh,o.r),B.aU,A.aea(n,new A.ai9(o),n,n,B.YP,o.d),A.aea(n,new A.aia(o),n,B.XX,B.XW,o.f),A.aea(B.b3,new A.aib(o),n,B.XT,B.Y2,o.e),B.br],t.p)
+s=A.c([A.aea(n,new A.ai8(o),B.I_,B.YM,B.Yh,o.r),B.aU,A.aea(n,new A.ai9(o),n,n,B.YP,o.d),A.aea(n,new A.aia(o),n,B.XW,B.XV,o.f),A.aea(B.b3,new A.aib(o),n,B.XS,B.Y2,o.e),B.br],t.p)
 r=o.w
 if(r!=null){r=r.h(0,"canSign")?B.cU:B.cy
 q=A.eC(8)
@@ -84048,7 +84048,7 @@ $0(){return this.a.adw(this.b)},
 $S:0}
 A.adN.prototype={
 $1(a){var s=null,r=A.ap(this.a,s,s,s,B.Ao,s,s),q=A.ap(this.b,s,s,s,B.Ui,s,s)
-return A.bW(A.c([A.dn(!1,B.XV,s,s,s,s,s,s,new A.adM(this.c),s,s)],t.p),s,q,r)},
+return A.bW(A.c([A.dn(!1,B.XU,s,s,s,s,s,s,new A.adM(this.c),s,s)],t.p),s,q,r)},
 $S:9}
 A.adM.prototype={
 $0(){A.aQ(this.a,!1).aX(null)
@@ -84057,7 +84057,7 @@ $S:0}
 A.adT.prototype={
 $1(a){var s=null,r=this.a,q=A.a1(r).i("a0<1,et>")
 r=A.T(new A.a0(r,new A.adR(),q),q.i("al.E"))
-return A.eN(A.c([A.eb(A.bK(r,B.B,B.x,B.aF),s,17976931348623157e292),new A.bI(B.Gk,new A.e7(B.mh,s,s,A.dn(!1,B.c2,s,s,s,s,s,s,new A.adS(a),s,s),s),s)],t.p),B.XH)},
+return A.eN(A.c([A.eb(A.bK(r,B.B,B.x,B.aF),s,17976931348623157e292),new A.bI(B.Gk,new A.e7(B.mh,s,s,A.dn(!1,B.c2,s,s,s,s,s,s,new A.adS(a),s,s),s),s)],t.p),B.XG)},
 $S:15}
 A.adR.prototype={
 $1(a){var s=null
@@ -84155,7 +84155,7 @@ this.a.adn(this.c)},
 $S:0}
 A.acL.prototype={
 $1(a){var s=null,r=this.a,q=this.b
-return A.bW(A.c([A.dn(!1,B.Yb,s,s,s,s,s,s,new A.acJ(r,a,q),s,s),A.dn(!1,B.XE,s,s,s,s,s,s,new A.acK(r,a,q),s,s)],t.p),s,B.XB,B.Y9)},
+return A.bW(A.c([A.dn(!1,B.Yb,s,s,s,s,s,s,new A.acJ(r,a,q),s,s),A.dn(!1,B.XD,s,s,s,s,s,s,new A.acK(r,a,q),s,s)],t.p),s,B.XB,B.Y9)},
 $S:9}
 A.acJ.prototype={
 $0(){var s,r,q
@@ -84199,7 +84199,7 @@ return A.aS(!1,s,s,s,!0,s,s,!0,s,s,s,s,s,!1,s,s,s,s,A.ap(A.l(r.h(0,"desc"))+"\n\
 $S:13}
 A.aci.prototype={
 $1(a){var s=null,r=this.a,q=this.b
-return A.bW(s,s,A.cW(A.bK(A.c([A.aS(!1,s,s,s,!0,s,s,!0,s,s,s,s,new A.acf(r,a,q),!1,s,s,s,s,s,s,B.XL,s,s,s),A.aS(!1,s,s,s,!0,s,s,!0,s,s,s,s,new A.acg(r,a,q),!1,s,s,s,s,s,s,B.WB,s,s,s),A.aS(!1,s,s,s,!0,s,s,!0,s,B.Hx,s,s,new A.ach(r,a,q),!1,s,s,s,s,s,s,B.Y0,s,s,s)],t.p),B.B,B.x,B.K),s),B.Yr)},
+return A.bW(s,s,A.cW(A.bK(A.c([A.aS(!1,s,s,s,!0,s,s,!0,s,s,s,s,new A.acf(r,a,q),!1,s,s,s,s,s,s,B.XK,s,s,s),A.aS(!1,s,s,s,!0,s,s,!0,s,s,s,s,new A.acg(r,a,q),!1,s,s,s,s,s,s,B.WB,s,s,s),A.aS(!1,s,s,s,!0,s,s,!0,s,B.Hx,s,s,new A.ach(r,a,q),!1,s,s,s,s,s,s,B.Y_,s,s,s)],t.p),B.B,B.x,B.K),s),B.Yr)},
 $S:9}
 A.acf.prototype={
 $0(){A.aQ(this.b,!1).aX(null)
@@ -84244,7 +84244,7 @@ $S:0}
 A.acV.prototype={
 $1(a){var s=t.j7
 s=A.T(new A.a0(A.c(["Proximal 1/3 (\u8fd1\u7aef)","Middle 1/3 (\u4e2d\u7aef)","Distal 1/3 (\u9060\u7aef)"],t.s),new A.acU(this.a,a,this.b),s),s.i("al.E"))
-return A.eN(s,B.XQ)},
+return A.eN(s,B.XP)},
 $S:15}
 A.acU.prototype={
 $1(a){var s=null
@@ -84260,7 +84260,7 @@ q.a.ds(q.d,r,"\u91cd\u5efa\uff1a"+A.l(s.h(0,"reconstruction"))+"\n\n\u6ce8\u610f
 $S:0}
 A.acS.prototype={
 $1(a){var s=null,r=this.a,q=this.b
-return A.bW(A.c([A.dn(!1,B.Ar,s,s,s,s,s,s,new A.acQ(r,a,q),s,s),A.dn(!1,B.lE,s,s,s,s,s,s,new A.acR(r,a,q),s,s)],t.p),s,B.Y_,B.Z_)},
+return A.bW(A.c([A.dn(!1,B.Ar,s,s,s,s,s,s,new A.acQ(r,a,q),s,s),A.dn(!1,B.lE,s,s,s,s,s,s,new A.acR(r,a,q),s,s)],t.p),s,B.XZ,B.Z_)},
 $S:9}
 A.acQ.prototype={
 $0(){var s,r,q
@@ -84329,7 +84329,7 @@ this.a.ds(this.c,r,q)},
 $S:0}
 A.adn.prototype={
 $1(a){var s=null,r=this.b
-return A.bW(s,s,A.cW(A.bK(A.c([A.aS(!1,s,s,s,!0,s,s,!0,s,B.HS,s,s,new A.adl(this.a,a,r),!1,s,s,s,s,s,s,B.Yn,s,s,s),A.aS(!1,s,s,s,!0,s,s,!0,s,B.oF,s,s,new A.adm(a,r),!1,s,s,s,s,s,s,B.Yv,s,s,s)],t.p),B.B,B.x,B.K),s),B.XO)},
+return A.bW(s,s,A.cW(A.bK(A.c([A.aS(!1,s,s,s,!0,s,s,!0,s,B.HS,s,s,new A.adl(this.a,a,r),!1,s,s,s,s,s,s,B.Yn,s,s,s),A.aS(!1,s,s,s,!0,s,s,!0,s,B.oF,s,s,new A.adm(a,r),!1,s,s,s,s,s,s,B.Yv,s,s,s)],t.p),B.B,B.x,B.K),s),B.XN)},
 $S:9}
 A.adl.prototype={
 $0(){A.aQ(this.b,!1).aX(null)
@@ -84353,7 +84353,7 @@ return A.aS(!1,s,!0,s,!0,s,s,!0,s,s,s,s,s,!1,s,s,s,s,A.ap(A.aHF(a),s,s,s,s,s,s),
 $S:13}
 A.ad4.prototype={
 $1(a){var s=null,r=this.a,q=this.b
-return A.bW(s,s,A.cW(A.bK(A.c([A.aS(!1,s,s,s,!0,s,s,!0,s,B.HE,s,s,new A.ad0(r,a,q),!1,s,s,s,s,B.Yo,s,B.XJ,s,s,s),B.aU,A.aS(!1,s,s,s,!0,s,s,!0,s,B.HP,s,s,new A.ad1(a,q),!1,s,s,s,s,B.X8,s,B.Yc,s,s,s),A.aS(!1,s,s,s,!0,s,s,!0,s,B.HN,s,s,new A.ad2(r,a,q),!1,s,s,s,s,s,s,B.XG,s,s,s),A.aS(!1,s,s,s,!0,s,s,!0,s,B.oC,s,s,new A.ad3(r,a,q),!1,s,s,s,s,s,s,B.YK,s,s,s)],t.p),B.B,B.x,B.K),s),B.Xj)},
+return A.bW(s,s,A.cW(A.bK(A.c([A.aS(!1,s,s,s,!0,s,s,!0,s,B.HE,s,s,new A.ad0(r,a,q),!1,s,s,s,s,B.Yo,s,B.XI,s,s,s),B.aU,A.aS(!1,s,s,s,!0,s,s,!0,s,B.HP,s,s,new A.ad1(a,q),!1,s,s,s,s,B.X8,s,B.Yc,s,s,s),A.aS(!1,s,s,s,!0,s,s,!0,s,B.HN,s,s,new A.ad2(r,a,q),!1,s,s,s,s,s,s,B.XF,s,s,s),A.aS(!1,s,s,s,!0,s,s,!0,s,B.oC,s,s,new A.ad3(r,a,q),!1,s,s,s,s,s,s,B.YK,s,s,s)],t.p),B.B,B.x,B.K),s),B.Xj)},
 $S:9}
 A.ad0.prototype={
 $0(){A.aQ(this.b,!1).aX(null)
@@ -84433,7 +84433,7 @@ return A.aS(!1,s,s,s,!0,s,s,!0,s,s,s,s,s,!1,s,s,s,s,A.ap(A.axa(a),s,s,s,s,s,s),s
 $S:13}
 A.adL.prototype={
 $1(a){var s=null,r=this.b,q=this.a
-return A.bW(s,s,A.cW(A.bK(A.c([A.aS(!1,s,s,s,!0,s,s,!0,s,B.HU,s,s,new A.adH(a,r),!1,s,s,s,s,s,s,B.Xw,s,s,s),B.aU,A.aS(!1,s,s,s,!0,s,s,!0,s,B.HC,s,s,new A.adI(q,a,r),!1,s,s,s,s,s,s,B.XI,s,s,s),A.aS(!1,s,s,s,!0,s,s,!0,s,B.HO,s,s,new A.adJ(q,a,r),!1,s,s,s,s,s,s,B.XM,s,s,s),A.aS(!1,s,s,s,!0,s,s,!0,s,B.HJ,s,s,new A.adK(a,r),!1,s,s,s,s,s,s,B.X5,s,s,s)],t.p),B.B,B.x,B.K),s),B.Y7)},
+return A.bW(s,s,A.cW(A.bK(A.c([A.aS(!1,s,s,s,!0,s,s,!0,s,B.HU,s,s,new A.adH(a,r),!1,s,s,s,s,s,s,B.Xw,s,s,s),B.aU,A.aS(!1,s,s,s,!0,s,s,!0,s,B.HC,s,s,new A.adI(q,a,r),!1,s,s,s,s,s,s,B.XH,s,s,s),A.aS(!1,s,s,s,!0,s,s,!0,s,B.HO,s,s,new A.adJ(q,a,r),!1,s,s,s,s,s,s,B.XL,s,s,s),A.aS(!1,s,s,s,!0,s,s,!0,s,B.HJ,s,s,new A.adK(a,r),!1,s,s,s,s,s,s,B.X5,s,s,s)],t.p),B.B,B.x,B.K),s),B.Y7)},
 $S:9}
 A.adH.prototype={
 $0(){A.aQ(this.a,!1).aX(null)
@@ -84494,7 +84494,7 @@ $S:522}
 A.acr.prototype={
 $1(a){var s=t.j7
 s=A.T(new A.a0(A.c(["\u6709\u75c7\u72c0\u7d50\u77f3","\u7121\u75c7\u72c0\u4f46\u9ad8\u98a8\u96aa (TPN/\u514d\u75ab)","\u81bd\u56ca\u606f\u8089 >1cm","\u74f7\u81bd\u56ca"],t.s),new A.acq(),s),s.i("al.E"))
-return A.eN(s,B.XU)},
+return A.eN(s,B.XT)},
 $S:15}
 A.acq.prototype={
 $1(a){var s=null
@@ -84511,7 +84511,7 @@ return A.aS(!1,s,s,s,!0,s,s,!0,s,s,s,s,s,!1,s,s,s,s,A.ap(A.aHy(a),s,s,s,s,s,s),s
 $S:13}
 A.acB.prototype={
 $1(a){var s=null,r=this.a,q=this.b
-return A.bW(s,s,A.cW(A.bK(A.c([A.aS(!1,s,s,s,!0,s,s,!0,s,s,s,s,new A.acx(r,a,q),!1,s,s,s,s,s,s,B.Yd,s,s,s),B.aU,A.aS(!1,s,s,s,!0,s,s,!0,s,B.oE,s,s,new A.acy(r,a,q),!1,s,s,s,s,B.Y1,s,B.Yz,s,s,s),A.aS(!1,s,s,s,!0,s,s,!0,s,B.HW,s,s,new A.acz(a,q),!1,s,s,s,s,B.XK,s,B.Ys,s,s,s),A.aS(!1,s,s,s,!0,s,s,!0,s,B.HA,s,s,new A.acA(r,a,q),!1,s,s,s,s,s,s,B.YZ,s,s,s)],t.p),B.B,B.x,B.K),s),B.XF)},
+return A.bW(s,s,A.cW(A.bK(A.c([A.aS(!1,s,s,s,!0,s,s,!0,s,s,s,s,new A.acx(r,a,q),!1,s,s,s,s,s,s,B.Yd,s,s,s),B.aU,A.aS(!1,s,s,s,!0,s,s,!0,s,B.oE,s,s,new A.acy(r,a,q),!1,s,s,s,s,B.Y0,s,B.Yz,s,s,s),A.aS(!1,s,s,s,!0,s,s,!0,s,B.HW,s,s,new A.acz(a,q),!1,s,s,s,s,B.XJ,s,B.Ys,s,s,s),A.aS(!1,s,s,s,!0,s,s,!0,s,B.HA,s,s,new A.acA(r,a,q),!1,s,s,s,s,s,s,B.YZ,s,s,s)],t.p),B.B,B.x,B.K),s),B.XE)},
 $S:9}
 A.acx.prototype={
 $0(){A.aQ(this.b,!1).aX(null)
@@ -84582,7 +84582,7 @@ p=this.a
 s=this.c
 q.push(A.aS(!1,r,r,r,!0,r,r,!0,r,r,r,r,new A.adx(p,s),!1,r,r,r,r,A.ap(A.a1l("\u982d"),r,r,r,r,r,r),r,B.Y5,r,r,r))
 q.push(A.aS(!1,r,r,r,!0,r,r,!0,r,r,r,r,new A.ady(p,s),!1,r,r,r,r,A.ap(A.a1l("\u5c3e"),r,r,r,r,r,r),r,B.Yx,r,r,r))
-return A.eN(q,B.XY)},
+return A.eN(q,B.XX)},
 $S:15}
 A.adw.prototype={
 $1(a){var s=null
@@ -84620,7 +84620,7 @@ q.push(B.br)
 q.push(A.lG(B.ir,s.gfL(),r))
 p=s.x
 if(p!=null){p=p.h(0,"action")
-q.push(new A.bI(B.dD,A.ap(p,r,r,r,A.e0(r,r,s.x.h(0,"needSurgery")?B.b3:B.d8,r,r,r,r,r,r,r,r,r,r,r,B.al,r,r,!0,r,r,r,r,r,r,r,r),r,r),r))}return A.bW(r,r,A.cW(A.bK(q,B.B,B.x,B.K),r),B.XN)}}
+q.push(new A.bI(B.dD,A.ap(p,r,r,r,A.e0(r,r,s.x.h(0,"needSurgery")?B.b3:B.d8,r,r,r,r,r,r,r,r,r,r,r,B.al,r,r,!0,r,r,r,r,r,r,r,r),r,r),r))}return A.bW(r,r,A.cW(A.bK(q,B.B,B.x,B.K),r),B.XM)}}
 A.alu.prototype={
 $0(){var s=this.a,r=s.d,q=s.f
 s.x=A.aHs(!1,s.r,q,this.b,r)},
@@ -84878,7 +84878,7 @@ if(q==null)q=0
 s=A.f3(r.e.a.a)
 if(s==null)s=0
 if(q>0)r.a3(new A.amG(r,q,s))},
-H(a){var s,r,q=this,p=null,o=t.p,n=A.c([B.WH,B.br,A.fC(q.d,B.Ig,B.b6,p),B.br,A.fC(q.e,B.Ic,B.b6,p),B.br,A.lG(B.XR,q.gfL(),A.awS(p,p,B.eZ,p,p,p,p,p,p,B.i,p,p,p,p,p,p,p,p,p,p))],o),m=q.f
+H(a){var s,r,q=this,p=null,o=t.p,n=A.c([B.WH,B.br,A.fC(q.d,B.Ig,B.b6,p),B.br,A.fC(q.e,B.Ic,B.b6,p),B.br,A.lG(B.XQ,q.gfL(),A.awS(p,p,B.eZ,p,p,p,p,p,p,B.i,p,p,p,p,p,p,p,p,p,p))],o),m=q.f
 if(m!=null){m=m.h(0,"isLeak")?B.cy:B.cU
 s=A.eC(8)
 r=q.f.h(0,"status")
@@ -88101,11 +88101,11 @@ B.bn=new A.nI(0,"start")
 B.c3=new A.afK(1,"down")
 B.al=new A.hp(6)
 B.aS=new A.j(!0,null,null,null,null,null,null,B.al,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.XP=new A.L("ResiGuard \u4e9e\u6771\u5916\u79d1\u624b\u518a",null,B.aS,null,null,null,null,null,null)
+B.XO=new A.L("ResiGuard \u4e9e\u6771\u5916\u79d1\u624b\u518a",null,B.aS,null,null,null,null,null,null)
 B.Vl=new A.j(!0,B.S,null,null,null,null,12,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.XD=new A.L("\u4f4f\u9662\u91ab\u5e2b\u96a8\u8eab\u52a9\u7406",null,B.Vl,null,null,null,null,null,null)
-B.Ks=s([B.XP,B.XD],t.p)
-B.F7=new A.qU(B.ad,B.x,B.aF,B.bn,null,B.c3,null,0,B.Ks,null)
+B.Y1=new A.L("\u4f4f\u9662\u91ab\u5e2b\u96a8\u8eab\u52a9\u7406 v2.1",null,B.Vl,null,null,null,null,null,null)
+B.KA=s([B.XO,B.Y1],t.p)
+B.F7=new A.qU(B.ad,B.x,B.aF,B.bn,null,B.c3,null,0,B.KA,null)
 B.fY=new A.hk(0,"cut")
 B.fZ=new A.hk(1,"copy")
 B.h_=new A.hk(2,"paste")
@@ -88904,7 +88904,7 @@ B.bT=new A.n(0.1411764705882353,0,0,0,B.e)
 B.c_=new A.h(0,1)
 B.BD=new A.bf(0,B.Q,B.bT,B.c_,1)
 B.BL=new A.bf(0,B.Q,B.bK,B.c_,3)
-B.Ky=s([B.BM,B.BD,B.BL],t.E)
+B.Kx=s([B.BM,B.BD,B.BL],t.E)
 B.BK=new A.bf(-2,B.Q,B.bS,B.cB,1)
 B.BX=new A.bf(0,B.Q,B.bT,B.hJ,2)
 B.BF=new A.bf(0,B.Q,B.bK,B.c_,5)
@@ -88951,7 +88951,7 @@ B.N6=new A.h(0,24)
 B.C1=new A.bf(3,B.Q,B.bT,B.N6,38)
 B.BV=new A.bf(8,B.Q,B.bK,B.vd,46)
 B.JP=s([B.BI,B.C1,B.BV],t.E)
-B.M7=new A.cc([0,B.p_,1,B.Ky,2,B.Jv,3,B.Kr,4,B.IO,6,B.JA,8,B.J9,9,B.Jn,12,B.JE,16,B.JD,24,B.JP],A.aw("cc<v,S<bf>>"))
+B.M7=new A.cc([0,B.p_,1,B.Kx,2,B.Jv,3,B.Kr,4,B.IO,6,B.JA,8,B.J9,9,B.Jn,12,B.JE,16,B.JD,24,B.JP],A.aw("cc<v,S<bf>>"))
 B.bY=new A.f(4294968065)
 B.lk=new A.a8(B.bY,!1,!1,!0,!1,B.n)
 B.bM=new A.f(4294968066)
@@ -89487,34 +89487,34 @@ B.Kl=s([B.uB,null,null,B.uQ],t.L)
 B.JC=s([B.uC,null,null,B.uR],t.L)
 B.JY=s([B.uD,null,null,B.d3],t.L)
 B.IL=s([B.uE,null,null,B.uS],t.L)
-B.Kz=s([B.uF,null,null,B.kI],t.L)
-B.Kw=s([B.uG,null,null,B.eV],t.L)
+B.Ky=s([B.uF,null,null,B.kI],t.L)
+B.Kv=s([B.uG,null,null,B.eV],t.L)
 B.Jo=s([B.uH,null,null,B.d4],t.L)
 B.KC=s([B.uI,null,null,B.eW],t.L)
-B.Kv=s([B.uJ,null,null,B.d5],t.L)
+B.Ku=s([B.uJ,null,null,B.d5],t.L)
 B.Jm=s([B.uK,null,null,B.kJ],t.L)
 B.IN=s([B.uL,null,null,B.d6],t.L)
 B.Jw=s([B.uM,null,null,B.eX],t.L)
 B.Km=s([B.uN,null,null,B.d7],t.L)
 B.Ko=s([B.uO,null,null,B.eY],t.L)
 B.Jp=s([B.eT,B.eT,B.hB,null],t.L)
-B.KA=s([B.hx,null,B.hx,null],t.L)
+B.Kz=s([B.hx,null,B.hx,null],t.L)
 B.JJ=s([B.bY,null,null,B.d4],t.L)
 B.JK=s([B.bM,null,null,B.d5],t.L)
 B.JL=s([B.bN,null,null,B.d6],t.L)
 B.KB=s([B.bZ,null,null,B.d7],t.L)
-B.Kt=s([B.kB,null,null,B.kJ],t.L)
+B.Ks=s([B.kB,null,null,B.kJ],t.L)
 B.Jq=s([B.eS,B.eS,B.hA,null],t.L)
 B.K3=s([B.aN,null,null,B.d3],t.L)
 B.JM=s([B.d0,null,null,B.eV],t.L)
 B.Jl=s([B.hw,null,null,B.kH],t.L)
 B.JN=s([B.d1,null,null,B.eX],t.L)
-B.Ku=s([B.kC,null,null,B.kI],t.L)
+B.Kt=s([B.kC,null,null,B.kI],t.L)
 B.Jr=s([B.eU,B.eU,B.hC,null],t.L)
 B.JO=s([B.eQ,null,null,B.eW],t.L)
 B.K7=s([B.eR,null,null,B.eY],t.L)
 B.Js=s([B.cA,B.cA,B.d2,null],t.L)
-B.Mm=new A.cc(["*",B.Ji,"+",B.Kl,"-",B.JC,".",B.JY,"/",B.IL,"0",B.Kz,"1",B.Kw,"2",B.Jo,"3",B.KC,"4",B.Kv,"5",B.Jm,"6",B.IN,"7",B.Jw,"8",B.Km,"9",B.Ko,"Alt",B.Jp,"AltGraph",B.KA,"ArrowDown",B.JJ,"ArrowLeft",B.JK,"ArrowRight",B.JL,"ArrowUp",B.KB,"Clear",B.Kt,"Control",B.Jq,"Delete",B.K3,"End",B.JM,"Enter",B.Jl,"Home",B.JN,"Insert",B.Ku,"Meta",B.Jr,"PageDown",B.JO,"PageUp",B.K7,"Shift",B.Js],A.aw("cc<E,S<f?>>"))
+B.Mm=new A.cc(["*",B.Ji,"+",B.Kl,"-",B.JC,".",B.JY,"/",B.IL,"0",B.Ky,"1",B.Kv,"2",B.Jo,"3",B.KC,"4",B.Ku,"5",B.Jm,"6",B.IN,"7",B.Jw,"8",B.Km,"9",B.Ko,"Alt",B.Jp,"AltGraph",B.Kz,"ArrowDown",B.JJ,"ArrowLeft",B.JK,"ArrowRight",B.JL,"ArrowUp",B.KB,"Clear",B.Ks,"Control",B.Jq,"Delete",B.K3,"End",B.JM,"Enter",B.Jl,"Home",B.JN,"Insert",B.Kt,"Meta",B.Jr,"PageDown",B.JO,"PageUp",B.K7,"Shift",B.Js],A.aw("cc<E,S<f?>>"))
 B.MX={KeyA:0,KeyB:1,KeyC:2,KeyD:3,KeyE:4,KeyF:5,KeyG:6,KeyH:7,KeyI:8,KeyJ:9,KeyK:10,KeyL:11,KeyM:12,KeyN:13,KeyO:14,KeyP:15,KeyQ:16,KeyR:17,KeyS:18,KeyT:19,KeyU:20,KeyV:21,KeyW:22,KeyX:23,KeyY:24,KeyZ:25,Digit1:26,Digit2:27,Digit3:28,Digit4:29,Digit5:30,Digit6:31,Digit7:32,Digit8:33,Digit9:34,Digit0:35,Minus:36,Equal:37,BracketLeft:38,BracketRight:39,Backslash:40,Semicolon:41,Quote:42,Backquote:43,Comma:44,Period:45,Slash:46}
 B.v2=new A.bS(B.MX,["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","1","2","3","4","5","6","7","8","9","0","-","=","[","]","\\",";","'","`",",",".","/"],t.li)
 B.MU={Abort:0,Again:1,AltLeft:2,AltRight:3,ArrowDown:4,ArrowLeft:5,ArrowRight:6,ArrowUp:7,AudioVolumeDown:8,AudioVolumeMute:9,AudioVolumeUp:10,Backquote:11,Backslash:12,Backspace:13,BracketLeft:14,BracketRight:15,BrightnessDown:16,BrightnessUp:17,BrowserBack:18,BrowserFavorites:19,BrowserForward:20,BrowserHome:21,BrowserRefresh:22,BrowserSearch:23,BrowserStop:24,CapsLock:25,Comma:26,ContextMenu:27,ControlLeft:28,ControlRight:29,Convert:30,Copy:31,Cut:32,Delete:33,Digit0:34,Digit1:35,Digit2:36,Digit3:37,Digit4:38,Digit5:39,Digit6:40,Digit7:41,Digit8:42,Digit9:43,DisplayToggleIntExt:44,Eject:45,End:46,Enter:47,Equal:48,Escape:49,Esc:50,F1:51,F10:52,F11:53,F12:54,F13:55,F14:56,F15:57,F16:58,F17:59,F18:60,F19:61,F2:62,F20:63,F21:64,F22:65,F23:66,F24:67,F3:68,F4:69,F5:70,F6:71,F7:72,F8:73,F9:74,Find:75,Fn:76,FnLock:77,GameButton1:78,GameButton10:79,GameButton11:80,GameButton12:81,GameButton13:82,GameButton14:83,GameButton15:84,GameButton16:85,GameButton2:86,GameButton3:87,GameButton4:88,GameButton5:89,GameButton6:90,GameButton7:91,GameButton8:92,GameButton9:93,GameButtonA:94,GameButtonB:95,GameButtonC:96,GameButtonLeft1:97,GameButtonLeft2:98,GameButtonMode:99,GameButtonRight1:100,GameButtonRight2:101,GameButtonSelect:102,GameButtonStart:103,GameButtonThumbLeft:104,GameButtonThumbRight:105,GameButtonX:106,GameButtonY:107,GameButtonZ:108,Help:109,Home:110,Hyper:111,Insert:112,IntlBackslash:113,IntlRo:114,IntlYen:115,KanaMode:116,KeyA:117,KeyB:118,KeyC:119,KeyD:120,KeyE:121,KeyF:122,KeyG:123,KeyH:124,KeyI:125,KeyJ:126,KeyK:127,KeyL:128,KeyM:129,KeyN:130,KeyO:131,KeyP:132,KeyQ:133,KeyR:134,KeyS:135,KeyT:136,KeyU:137,KeyV:138,KeyW:139,KeyX:140,KeyY:141,KeyZ:142,KeyboardLayoutSelect:143,Lang1:144,Lang2:145,Lang3:146,Lang4:147,Lang5:148,LaunchApp1:149,LaunchApp2:150,LaunchAssistant:151,LaunchControlPanel:152,LaunchMail:153,LaunchScreenSaver:154,MailForward:155,MailReply:156,MailSend:157,MediaFastForward:158,MediaPause:159,MediaPlay:160,MediaPlayPause:161,MediaRecord:162,MediaRewind:163,MediaSelect:164,MediaStop:165,MediaTrackNext:166,MediaTrackPrevious:167,MetaLeft:168,MetaRight:169,MicrophoneMuteToggle:170,Minus:171,NonConvert:172,NumLock:173,Numpad0:174,Numpad1:175,Numpad2:176,Numpad3:177,Numpad4:178,Numpad5:179,Numpad6:180,Numpad7:181,Numpad8:182,Numpad9:183,NumpadAdd:184,NumpadBackspace:185,NumpadClear:186,NumpadClearEntry:187,NumpadComma:188,NumpadDecimal:189,NumpadDivide:190,NumpadEnter:191,NumpadEqual:192,NumpadMemoryAdd:193,NumpadMemoryClear:194,NumpadMemoryRecall:195,NumpadMemoryStore:196,NumpadMemorySubtract:197,NumpadMultiply:198,NumpadParenLeft:199,NumpadParenRight:200,NumpadSubtract:201,Open:202,PageDown:203,PageUp:204,Paste:205,Pause:206,Period:207,Power:208,PrintScreen:209,PrivacyScreenToggle:210,Props:211,Quote:212,Resume:213,ScrollLock:214,Select:215,SelectTask:216,Semicolon:217,ShiftLeft:218,ShiftRight:219,ShowAllWindows:220,Slash:221,Sleep:222,Space:223,Super:224,Suspend:225,Tab:226,Turbo:227,Undo:228,WakeUp:229,ZoomToggle:230}
@@ -90168,8 +90168,8 @@ B.a0q=new A.ix("v1.3.0","2024-05-18","\u65b0\u589e Ch16 \u809d\u81df\u826f\u6027
 B.a0m=new A.ix("v1.2.0","2024-05-15","\u65b0\u589e Ch12-15 \u6d88\u5316\u7cfb (\u80c3\u764c, \u6e1b\u91cd, GERD)",null)
 B.a0o=new A.ix("v1.1.0","2024-05-10","\u65b0\u589e Ch10 \u4e73\u623f\u5916\u79d1\u6a21\u7d44",null)
 B.a0n=new A.ix("v1.0.0","2024-05-01","\u521d\u59cb\u7248\u672c\uff1a\u7dd2\u8ad6 Ch1-8 + \u7532\u72c0\u817a",null)
-B.Kx=s([B.a0l,B.a0p,B.a0r,B.a0k,B.a0q,B.a0m,B.a0o,B.a0n],t.p)
-B.F8=new A.qU(B.ad,B.x,B.K,B.bn,null,B.c3,null,0,B.Kx,null)
+B.Kw=s([B.a0l,B.a0p,B.a0r,B.a0k,B.a0q,B.a0m,B.a0o,B.a0n],t.p)
+B.F8=new A.qU(B.ad,B.x,B.K,B.bn,null,B.c3,null,0,B.Kw,null)
 B.R_=new A.Aq(null,B.F8,null)
 B.R0=new A.x(1e5,1e5)
 B.zO=new A.x(10,10)
@@ -90655,33 +90655,33 @@ B.Xz=new A.L("Amylase 3x Rule",null,null,null,null,null,null,null,null)
 B.XA=new A.L("Ch1-8 \u57fa\u790e\u6838\u5fc3\u80fd\u529b",null,B.aS,null,null,null,null,null,null)
 B.XB=new A.L("\u98df\u9053\u8815\u52d5\u529f\u80fd (Peristalsis)\uff1f",null,null,null,null,null,null,null,null)
 B.XC=new A.L("\u6c7a\u5b9a\u7b56\u7565",null,null,null,null,null,null,null,null)
-B.XE=new A.L("\u4e0d\u826f",null,null,null,null,null,null,null,null)
-B.XF=new A.L("\u81bd\u7ba1\u764c (CCA)",null,null,null,null,null,null,null,null)
-B.XG=new A.L("\ud83c\udf33 BCLC \u7b56\u7565",null,null,null,null,null,null,null,null)
-B.XH=new A.L("\u7532\u72c0\u817a\u624b\u8853\u9069\u61c9\u75c7",null,null,null,null,null,null,null,null)
-B.XI=new A.L("\ud83c\udf21\ufe0f HVPG \u58d3\u529b\u89e3\u8b80",null,null,null,null,null,null,null,null)
-B.XJ=new A.L("\ud83e\ude7b \u5178\u578b\u5f71\u50cf",null,null,null,null,null,null,null,null)
-B.XK=new A.L("Bilirubin > 10?",null,null,null,null,null,null,null,null)
-B.XL=new A.L("\ud83d\udd2c \u816b\u7624\u5206\u985e",null,null,null,null,null,null,null,null)
-B.XM=new A.L("\ud83e\ude78 \u6025\u6027\u51fa\u8840\u8655\u7f6e",null,null,null,null,null,null,null,null)
-B.XN=new A.L("\u826f\u6027\u816b\u7624\u624b\u8853\u8a55\u4f30",null,null,null,null,null,null,null,null)
-B.XO=new A.L("\u809d\u81df\u826f\u6027\u816b\u7624",null,null,null,null,null,null,null,null)
+B.XD=new A.L("\u4e0d\u826f",null,null,null,null,null,null,null,null)
+B.XE=new A.L("\u81bd\u7ba1\u764c (CCA)",null,null,null,null,null,null,null,null)
+B.XF=new A.L("\ud83c\udf33 BCLC \u7b56\u7565",null,null,null,null,null,null,null,null)
+B.XG=new A.L("\u7532\u72c0\u817a\u624b\u8853\u9069\u61c9\u75c7",null,null,null,null,null,null,null,null)
+B.XH=new A.L("\ud83c\udf21\ufe0f HVPG \u58d3\u529b\u89e3\u8b80",null,null,null,null,null,null,null,null)
+B.XI=new A.L("\ud83e\ude7b \u5178\u578b\u5f71\u50cf",null,null,null,null,null,null,null,null)
+B.XJ=new A.L("Bilirubin > 10?",null,null,null,null,null,null,null,null)
+B.XK=new A.L("\ud83d\udd2c \u816b\u7624\u5206\u985e",null,null,null,null,null,null,null,null)
+B.XL=new A.L("\ud83e\ude78 \u6025\u6027\u51fa\u8840\u8655\u7f6e",null,null,null,null,null,null,null,null)
+B.XM=new A.L("\u826f\u6027\u816b\u7624\u624b\u8853\u8a55\u4f30",null,null,null,null,null,null,null,null)
+B.XN=new A.L("\u809d\u81df\u826f\u6027\u816b\u7624",null,null,null,null,null,null,null,null)
 B.lE=new A.L("\u5426",null,null,null,null,null,null,null,null)
-B.XQ=new A.L("\u816b\u7624\u4f4d\u7f6e",null,null,null,null,null,null,null,null)
-B.XR=new A.L("\u8a08\u7b97\u98a8\u96aa",null,null,null,null,null,null,null,null)
-B.XS=new A.L("\u98f2\u98df\u8cea\u5730\u7a2e\u985e",null,null,null,null,null,null,null,null)
+B.XP=new A.L("\u816b\u7624\u4f4d\u7f6e",null,null,null,null,null,null,null,null)
+B.XQ=new A.L("\u8a08\u7b97\u98a8\u96aa",null,null,null,null,null,null,null,null)
+B.XR=new A.L("\u98f2\u98df\u8cea\u5730\u7a2e\u985e",null,null,null,null,null,null,null,null)
 B.ir=new A.L("\u8a55\u4f30",null,null,null,null,null,null,null,null)
-B.XT=new A.L("\u525b\u6253 Demerol/Morphine",null,null,null,null,null,null,null,null)
-B.XU=new A.L("\u624b\u8853\u9069\u61c9\u75c7",null,null,null,null,null,null,null,null)
-B.XV=new A.L("\u78ba\u5b9a",null,null,null,null,null,null,null,null)
-B.XW=new A.L("\u610f\u8b58\u6e05\u695a (Oriented)",null,null,null,null,null,null,null,null)
-B.XX=new A.L("\u4eba\u6642\u5730\u6e05\u695a",null,null,null,null,null,null,null,null)
-B.XY=new A.L("\u81e8\u5e8a\u7279\u5fb5",null,null,null,null,null,null,null,null)
-B.XZ=new A.L("\u66f4\u65b0\u65e5\u8a8c",null,null,null,null,null,null,null,null)
-B.Y_=new A.L("\u662f\u5426\u70ba\u5c40\u90e8\u665a\u671f (cT3/4 \u6216 N+)\uff1f",null,null,null,null,null,null,null,null)
+B.XS=new A.L("\u525b\u6253 Demerol/Morphine",null,null,null,null,null,null,null,null)
+B.XT=new A.L("\u624b\u8853\u9069\u61c9\u75c7",null,null,null,null,null,null,null,null)
+B.XU=new A.L("\u78ba\u5b9a",null,null,null,null,null,null,null,null)
+B.XV=new A.L("\u610f\u8b58\u6e05\u695a (Oriented)",null,null,null,null,null,null,null,null)
+B.XW=new A.L("\u4eba\u6642\u5730\u6e05\u695a",null,null,null,null,null,null,null,null)
+B.XX=new A.L("\u81e8\u5e8a\u7279\u5fb5",null,null,null,null,null,null,null,null)
+B.XY=new A.L("\u66f4\u65b0\u65e5\u8a8c",null,null,null,null,null,null,null,null)
+B.XZ=new A.L("\u662f\u5426\u70ba\u5c40\u90e8\u665a\u671f (cT3/4 \u6216 N+)\uff1f",null,null,null,null,null,null,null,null)
 B.c2=new A.L("\u95dc\u9589",null,null,null,null,null,null,null,null)
-B.Y0=new A.L("\ud83d\udeab GIST \u7981\u5fcc",null,null,null,null,null,null,null,null)
-B.Y1=new A.L("Klatskin vs Distal",null,null,null,null,null,null,null,null)
+B.Y_=new A.L("\ud83d\udeab GIST \u7981\u5fcc",null,null,null,null,null,null,null,null)
+B.Y0=new A.L("Klatskin vs Distal",null,null,null,null,null,null,null,null)
 B.Y2=new A.L("\u53d7\u85e5\u7269\u5f71\u97ff (Sedated)",null,null,null,null,null,null,null,null)
 B.Y3=new A.L("HVPG \u81e8\u5e8a\u610f\u7fa9",null,null,null,null,null,null,null,null)
 B.Y4=new A.L("\ud83d\uddfb \u88c2\u5b54\u759d\u6c23\u5206\u985e",null,null,null,null,null,null,null,null)
