@@ -16,9 +16,8 @@ class SurgerySection extends StatelessWidget {
           "一般外科 (GS)",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        subtitle: const Text("甲乳、胃腸、肝膽、移植"),
+        subtitle: const Text("甲乳、胃腸、肝膽、疝氣 (Ch9-Ch26)"),
         children: [
-          // Ch9: 甲狀腺
           _buildItem(
             context,
             '甲狀腺手術適應症',
@@ -41,8 +40,6 @@ class SurgerySection extends StatelessWidget {
             Icons.monitor_heart,
             () => _showParathyroidDialog(context),
           ),
-
-          // Ch10: 乳房
           _buildItem(
             context,
             '良性乳房疾病指引',
@@ -50,8 +47,6 @@ class SurgerySection extends StatelessWidget {
             Icons.female,
             () => _showBreastDialog(context),
           ),
-
-          // Ch12: GERD
           _buildItem(
             context,
             '胃食道逆流 & 裂孔疝氣',
@@ -59,8 +54,6 @@ class SurgerySection extends StatelessWidget {
             Icons.loop,
             () => _showGerdDialog(context),
           ),
-
-          // Ch13: 良性胃腫瘤
           _buildItem(
             context,
             '良性胃腫瘤 & GIST',
@@ -68,8 +61,6 @@ class SurgerySection extends StatelessWidget {
             Icons.science,
             () => _showBenignGastricDialog(context),
           ),
-
-          // Ch14: 胃癌
           _buildItem(
             context,
             '胃癌手術決策',
@@ -77,8 +68,6 @@ class SurgerySection extends StatelessWidget {
             Icons.restaurant,
             () => _showGastricCancerDialog(context),
           ),
-
-          // Ch15: 代謝減重
           _buildItem(
             context,
             '代謝減重手術 (MBS)',
@@ -86,8 +75,6 @@ class SurgerySection extends StatelessWidget {
             Icons.monitor_weight,
             () => _showBariatricDialog(context),
           ),
-
-          // Ch16: 肝臟良性
           _buildItem(
             context,
             '肝臟良性腫瘤',
@@ -95,8 +82,6 @@ class SurgerySection extends StatelessWidget {
             Icons.donut_large,
             () => _showLiverTumorDialog(context),
           ),
-
-          // Ch17: 肝臟惡性 (HCC)
           _buildItem(
             context,
             '惡性肝腫瘤 (HCC)',
@@ -104,8 +89,6 @@ class SurgerySection extends StatelessWidget {
             Icons.coronavirus,
             () => _showHCCDialog(context),
           ),
-
-          // Ch18: 肝臟移植
           _buildItem(
             context,
             '肝臟移植 (LT)',
@@ -113,8 +96,6 @@ class SurgerySection extends StatelessWidget {
             Icons.diversity_1,
             () => _showLTDialog(context),
           ),
-
-          // Ch20: 門靜脈高壓
           _buildItem(
             context,
             '門靜脈高壓 (Portal HTN)',
@@ -122,8 +103,6 @@ class SurgerySection extends StatelessWidget {
             Icons.water,
             () => _showPortalHTNDialog(context),
           ),
-
-          // Ch21: 膽囊與膽道
           _buildItem(
             context,
             '膽囊與總膽管結石',
@@ -131,8 +110,6 @@ class SurgerySection extends StatelessWidget {
             Icons.grain,
             () => _showBiliaryDialog(context),
           ),
-
-          // Ch22: 膽管癌
           _buildItem(
             context,
             '膽管癌 (CCA)',
@@ -140,14 +117,39 @@ class SurgerySection extends StatelessWidget {
             Icons.account_tree,
             () => _showCCADialog(context),
           ),
-
-          // Ch23: 胰臟癌 (New!)
           _buildItem(
             context,
             '胰臟癌 (Pancreatic Cancer)',
             'Whipple, POPF 胰漏計算',
-            Icons.pie_chart, // 胰臟形狀
+            Icons.pie_chart,
             () => _showPancreaticDialog(context),
+          ),
+
+          // Ch24: 胰臟良性/PNET
+          _buildItem(
+            context,
+            '胰臟囊腫與 PNET',
+            'IPMN 風險、Insulinoma',
+            Icons.bubble_chart,
+            () => _showPancreaticBenignDialog(context),
+          ),
+
+          // Ch25: 腹壁疝氣 (修正名稱)
+          _buildItem(
+            context,
+            '腹壁疝氣 (Ventral Hernia)',
+            'Mesh 層次, 嵌頓急診處置',
+            Icons.grid_on,
+            () => _showVentralHerniaDialog(context),
+          ),
+
+          // Ch26: 鼠蹊部疝氣
+          _buildItem(
+            context,
+            '鼠蹊部疝氣 (Inguinal)',
+            '分類鑑別、術式決策',
+            Icons.accessibility_new,
+            () => _showInguinalHerniaDialog(context),
           ),
         ],
       ),
@@ -190,7 +192,12 @@ class SurgerySection extends StatelessWidget {
             color: Colors.teal,
           ),
         ),
-        content: Text(content, style: const TextStyle(fontSize: 16)),
+        content: SingleChildScrollView(
+          child: Text(
+            content,
+            style: const TextStyle(fontSize: 16, height: 1.5),
+          ),
+        ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
@@ -202,10 +209,9 @@ class SurgerySection extends StatelessWidget {
   }
 
   // ==========================================
-  // Dialog 實作區
+  // Dialog 實作區 (Ch9 - Ch26)
   // ==========================================
 
-  // --- Ch9 ---
   void _showThyroidIndicationDialog(BuildContext context) {
     var list = GeneralSurgeryLogic.getThyroidIndications();
     showDialog(
@@ -301,7 +307,6 @@ class SurgerySection extends StatelessWidget {
     );
   }
 
-  // --- Ch10 ---
   void _showBreastDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -382,7 +387,6 @@ class SurgerySection extends StatelessWidget {
     );
   }
 
-  // --- Ch12 ---
   void _showGerdDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -411,7 +415,7 @@ class SurgerySection extends StatelessWidget {
                 title: const Text('🗻 裂孔疝氣分類'),
                 onTap: () {
                   Navigator.pop(ctx);
-                  _showHerniaDialog(context);
+                  _showHiatalHerniaDialog(context);
                 },
               ),
             ],
@@ -478,7 +482,8 @@ class SurgerySection extends StatelessWidget {
     );
   }
 
-  void _showHerniaDialog(BuildContext context) {
+  // --- Ch12: 裂孔疝氣 (已改名) ---
+  void _showHiatalHerniaDialog(BuildContext context) {
     showDialog(
       context: context,
       builder: (ctx) => SimpleDialog(
@@ -500,7 +505,6 @@ class SurgerySection extends StatelessWidget {
     );
   }
 
-  // --- Ch13 ---
   void _showBenignGastricDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -578,7 +582,6 @@ class SurgerySection extends StatelessWidget {
     );
   }
 
-  // --- Ch14 ---
   void _showGastricCancerDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -683,7 +686,6 @@ class SurgerySection extends StatelessWidget {
     );
   }
 
-  // --- Ch15 ---
   void _showBariatricDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -787,7 +789,6 @@ class SurgerySection extends StatelessWidget {
     );
   }
 
-  // --- Ch16 ---
   void _showLiverTumorDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -841,7 +842,6 @@ class SurgerySection extends StatelessWidget {
     );
   }
 
-  // --- Ch17 ---
   void _showHCCDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -945,7 +945,6 @@ class SurgerySection extends StatelessWidget {
     );
   }
 
-  // --- Ch18 ---
   void _showLTDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -1025,7 +1024,6 @@ class SurgerySection extends StatelessWidget {
     );
   }
 
-  // --- Ch20 ---
   void _showPortalHTNDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -1109,7 +1107,6 @@ class SurgerySection extends StatelessWidget {
     );
   }
 
-  // --- Ch21 ---
   void _showBiliaryDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -1192,7 +1189,6 @@ class SurgerySection extends StatelessWidget {
     );
   }
 
-  // --- Ch22 ---
   void _showCCADialog(BuildContext context) {
     showDialog(
       context: context,
@@ -1293,7 +1289,6 @@ class SurgerySection extends StatelessWidget {
     );
   }
 
-  // --- Ch23 (New!) ---
   void _showPancreaticDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -1417,10 +1412,335 @@ class SurgerySection extends StatelessWidget {
       ),
     );
   }
+
+  // --- Ch24: 胰臟良性/PNET (UI Implementation) ---
+  void _showPancreaticBenignDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('胰臟囊腫與 PNET'),
+        content: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text(
+                'Cystic Neoplasms',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.grey,
+                ),
+              ),
+              ListTile(
+                title: const Text('🔍 囊性腫瘤鑑別'),
+                subtitle: const Text('SCA, MCN, SPT, IPMN'),
+                leading: const Icon(Icons.search, color: Colors.teal),
+                onTap: () {
+                  Navigator.pop(ctx);
+                  _showCysticInfoDialog(context);
+                },
+              ),
+              ListTile(
+                title: const Text('🧮 IPMN 風險計算'),
+                subtitle: const Text('Worrisome features?'),
+                leading: const Icon(Icons.calculate, color: Colors.orange),
+                onTap: () {
+                  Navigator.pop(ctx);
+                  showDialog(
+                    context: context,
+                    builder: (c) => const _IPMNCalculator(),
+                  );
+                },
+              ),
+              const Divider(),
+              const Text(
+                'Neuroendocrine Tumors (PNET)',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.grey,
+                ),
+              ),
+              ListTile(
+                title: const Text('📚 症候群速查'),
+                subtitle: const Text('Whipple Triad, WDHA...'),
+                leading: const Icon(Icons.menu_book, color: Colors.blue),
+                onTap: () {
+                  Navigator.pop(ctx);
+                  _showPNETSyndromeDialog(context);
+                },
+              ),
+              ListTile(
+                title: const Text('🔪 手術決策'),
+                subtitle: const Text('Size > 2cm? Functional?'),
+                leading: const Icon(Icons.content_cut, color: Colors.red),
+                onTap: () {
+                  Navigator.pop(ctx);
+                  showDialog(
+                    context: context,
+                    builder: (c) => const _PNETCalculator(),
+                  );
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  void _showCysticInfoDialog(BuildContext context) {
+    var types = ['SCA (漿液性)', 'MCN (黏液性)', 'IPMN (導管內)', 'SPT (實質偽乳突)'];
+    showDialog(
+      context: context,
+      builder: (ctx) => SimpleDialog(
+        title: const Text('囊性腫瘤特徵'),
+        children: types.map((t) {
+          var info = GeneralSurgeryLogic.getCysticTumorInfo(t);
+          return ListTile(
+            title: Text(t),
+            subtitle: Text(info['desc']!),
+            trailing: const Icon(Icons.info_outline),
+            onTap: () => _showResultDialog(
+              context,
+              t,
+              "特徵:\n${info['desc']}\n\n風險:\n${info['risk']}\n\n處置:\n${info['action']}",
+            ),
+          );
+        }).toList(),
+      ),
+    );
+  }
+
+  void _showPNETSyndromeDialog(BuildContext context) {
+    var types = ['Insulinoma', 'Gastrinoma', 'Glucagonoma', 'VIPoma'];
+    showDialog(
+      context: context,
+      builder: (ctx) => SimpleDialog(
+        title: const Text('功能性 PNET'),
+        children: types
+            .map(
+              (t) => ListTile(
+                title: Text(t),
+                subtitle: Text(
+                  GeneralSurgeryLogic.getPNETSyndrome(t).split('\n')[0],
+                ),
+                onTap: () => _showResultDialog(
+                  context,
+                  t,
+                  GeneralSurgeryLogic.getPNETSyndrome(t),
+                ),
+              ),
+            )
+            .toList(),
+      ),
+    );
+  }
+
+  // --- Ch25: 腹壁疝氣 (UI Implementation) ---
+  void _showVentralHerniaDialog(BuildContext context) {
+    // Changed name to avoid conflict
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('腹壁疝氣 (Hernia)'),
+        content: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                title: const Text('📚 疝氣分類與定義'),
+                onTap: () {
+                  Navigator.pop(ctx);
+                  _showHerniaInfoDialog(context);
+                },
+              ),
+              const Divider(),
+              ListTile(
+                title: const Text('🕸️ Mesh 放置層次 (圖解)'),
+                subtitle: const Text('Onlay, Sublay, IPOM'),
+                leading: const Icon(Icons.layers, color: Colors.blue),
+                onTap: () {
+                  Navigator.pop(ctx);
+                  _showMeshPlacementDialog(context);
+                },
+              ),
+              ListTile(
+                title: const Text('🚨 絞扼性疝氣 (急診)'),
+                subtitle: const Text('Strangulated & Mesh Use'),
+                leading: const Icon(Icons.emergency, color: Colors.red),
+                onTap: () {
+                  Navigator.pop(ctx);
+                  showDialog(
+                    context: context,
+                    builder: (c) => const _StrangulatedHerniaCalculator(),
+                  );
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  void _showHerniaInfoDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (ctx) => SimpleDialog(
+        title: const Text('常見疝氣類型'),
+        children: GeneralSurgeryLogic.getHerniaTypes()
+            .map(
+              (t) => ListTile(
+                title: Text(
+                  t.split(':')[0],
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
+                subtitle: Text(t.split(':')[1]),
+                dense: true,
+                leading: const Icon(Icons.label_important, size: 16),
+              ),
+            )
+            .toList(),
+      ),
+    );
+  }
+
+  void _showMeshPlacementDialog(BuildContext context) {
+    var layers = ['Onlay', 'Sublay', 'IPOM', 'Inlay'];
+    showDialog(
+      context: context,
+      builder: (ctx) => SimpleDialog(
+        title: const Text('Mesh 放置層次'),
+        children: layers.map((t) {
+          var info = GeneralSurgeryLogic.getMeshPlacementInfo(t);
+          return ListTile(
+            title: Text(t, style: const TextStyle(fontWeight: FontWeight.bold)),
+            subtitle: Text(info['pos']!),
+            isThreeLine: true,
+            onTap: () => _showResultDialog(
+              context,
+              t,
+              "位置：${info['pos']}\n\n✅ 優點：${info['pros']}\n\n⚠️ 缺點：${info['cons']}",
+            ),
+          );
+        }).toList(),
+      ),
+    );
+  }
+
+  // --- Ch26: 鼠蹊部疝氣 (UI Implementation) ---
+  void _showInguinalHerniaDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('鼠蹊部疝氣 (Inguinal)'),
+        content: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                title: const Text('📚 鑑別診斷與分類'),
+                subtitle: const Text('Direct, Indirect, Femoral'),
+                onTap: () {
+                  Navigator.pop(ctx);
+                  _showInguinalClassDialog(context);
+                },
+              ),
+              const Divider(),
+              ListTile(
+                title: const Text('🤔 術式與適應症決策'),
+                subtitle: const Text('Emergency? Laparoscopic?'),
+                leading: const Icon(Icons.schema, color: Colors.teal),
+                onTap: () {
+                  Navigator.pop(ctx);
+                  showDialog(
+                    context: context,
+                    builder: (c) => const _InguinalStrategyCalculator(),
+                  );
+                },
+              ),
+              ListTile(
+                title: const Text('🏥 圍手術期照護'),
+                subtitle: const Text('Antibiotics, Prep, Activity'),
+                leading: const Icon(
+                  Icons.local_hospital,
+                  color: Colors.blueGrey,
+                ),
+                onTap: () {
+                  Navigator.pop(ctx);
+                  _showResultDialog(
+                    context,
+                    '圍手術期重點',
+                    GeneralSurgeryLogic.getHerniaPerioperativeInfo(),
+                  );
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  void _showInguinalClassDialog(BuildContext context) {
+    var infos = GeneralSurgeryLogic.getInguinalHerniaInfo();
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('疝氣型態鑑別'),
+        content: SingleChildScrollView(
+          child: Column(
+            children: infos
+                .map(
+                  (info) => Card(
+                    elevation: 0,
+                    color: Colors.grey.shade50,
+                    margin: const EdgeInsets.only(bottom: 12),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      side: BorderSide(color: Colors.grey.shade300),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(12),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            info['title']!,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                              color: Colors.teal,
+                            ),
+                          ),
+                          const SizedBox(height: 6),
+                          Text(
+                            info['desc']!,
+                            style: const TextStyle(
+                              height: 1.4,
+                              color: Colors.black87,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                )
+                .toList(),
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx),
+            child: const Text('關閉'),
+          ),
+        ],
+      ),
+    );
+  }
 }
 
 // ==========================================
-// 獨立計算機 Widgets (Ch9-Ch23 All Calculators)
+// 獨立計算機 Widgets (Ch9 - Ch26)
 // ==========================================
 
 class _LiverTumorCalculator extends StatefulWidget {
@@ -2034,7 +2354,6 @@ class _CCADrainageCalculatorState extends State<_CCADrainageCalculator> {
   }
 }
 
-// Ch23 Calculator (New!)
 class _POPFCalculator extends StatefulWidget {
   const _POPFCalculator();
   @override
@@ -2045,18 +2364,16 @@ class _POPFCalculatorState extends State<_POPFCalculator> {
   final _serumCtrl = TextEditingController();
   final _drainCtrl = TextEditingController();
   Map<String, dynamic>? _result;
-
   void _calculate() {
     double s = double.tryParse(_serumCtrl.text) ?? 0;
     double d = double.tryParse(_drainCtrl.text) ?? 0;
-    if (s > 0) {
+    if (s > 0)
       setState(() {
         _result = GeneralSurgeryLogic.assessPOPF(
           serumAmylase: s,
           drainAmylase: d,
         );
       });
-    }
   }
 
   @override
@@ -2123,6 +2440,394 @@ class _POPFCalculatorState extends State<_POPFCalculator> {
                   ],
                 ),
               ),
+          ],
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: const Text('關閉'),
+        ),
+      ],
+    );
+  }
+}
+
+// Ch24 UI
+class _IPMNCalculator extends StatefulWidget {
+  const _IPMNCalculator();
+  @override
+  State<_IPMNCalculator> createState() => _IPMNCalculatorState();
+}
+
+class _IPMNCalculatorState extends State<_IPMNCalculator> {
+  final _ductCtrl = TextEditingController();
+  final _cystCtrl = TextEditingController();
+  bool _jaundice = false;
+  bool _enhancingSolid = false;
+  bool _lymphNode = false;
+  Map<String, dynamic>? _result;
+  void _calculate() {
+    double duct = double.tryParse(_ductCtrl.text) ?? 0;
+    double cyst = double.tryParse(_cystCtrl.text) ?? 0;
+    setState(() {
+      _result = GeneralSurgeryLogic.checkIPMNManagement(
+        mainDuctSizeMm: duct,
+        hasJaundice: _jaundice,
+        hasEnhancingSolid: _enhancingSolid,
+        cystSizeCm: cyst,
+        hasLymphNode: _lymphNode,
+      );
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: const Text('IPMN 風險評估'),
+      content: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextField(
+              controller: _ductCtrl,
+              keyboardType: TextInputType.number,
+              decoration: const InputDecoration(labelText: '主胰管直徑 (mm)'),
+            ),
+            TextField(
+              controller: _cystCtrl,
+              keyboardType: TextInputType.number,
+              decoration: const InputDecoration(labelText: '囊腫大小 (cm)'),
+            ),
+            CheckboxListTile(
+              title: const Text('阻塞性黃疸'),
+              value: _jaundice,
+              onChanged: (v) => setState(() => _jaundice = v!),
+            ),
+            CheckboxListTile(
+              title: const Text('實質增強成分 (Solid)'),
+              value: _enhancingSolid,
+              onChanged: (v) => setState(() => _enhancingSolid = v!),
+            ),
+            CheckboxListTile(
+              title: const Text('淋巴結腫大'),
+              value: _lymphNode,
+              onChanged: (v) => setState(() => _lymphNode = v!),
+            ),
+            ElevatedButton(onPressed: _calculate, child: const Text('評估風險')),
+            if (_result != null)
+              Container(
+                margin: const EdgeInsets.only(top: 10),
+                padding: const EdgeInsets.all(8),
+                color: Colors.blue.shade50,
+                child: Text(
+                  "${_result!['risk']}\n\n${_result!['action']}",
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+          ],
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: const Text('關閉'),
+        ),
+      ],
+    );
+  }
+}
+
+class _PNETCalculator extends StatefulWidget {
+  const _PNETCalculator();
+  @override
+  State<_PNETCalculator> createState() => _PNETCalculatorState();
+}
+
+class _PNETCalculatorState extends State<_PNETCalculator> {
+  final _sizeCtrl = TextEditingController();
+  bool _isFunctional = false;
+  Map<String, dynamic>? _result;
+  void _calculate() {
+    double size = double.tryParse(_sizeCtrl.text) ?? 0;
+    setState(() {
+      _result = GeneralSurgeryLogic.checkPNETManagement(
+        isFunctional: _isFunctional,
+        sizeCm: size,
+      );
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: const Text('PNET 手術決策'),
+      content: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextField(
+              controller: _sizeCtrl,
+              keyboardType: TextInputType.number,
+              decoration: const InputDecoration(labelText: '腫瘤大小 (cm)'),
+            ),
+            CheckboxListTile(
+              title: const Text('功能性 (有荷爾蒙症狀)'),
+              subtitle: const Text('如低血糖、嚴重水瀉等'),
+              value: _isFunctional,
+              onChanged: (v) => setState(() => _isFunctional = v!),
+            ),
+            const SizedBox(height: 10),
+            ElevatedButton(onPressed: _calculate, child: const Text('評估')),
+            if (_result != null)
+              Container(
+                margin: const EdgeInsets.only(top: 10),
+                padding: const EdgeInsets.all(8),
+                color: Colors.orange.shade50,
+                child: Text(
+                  "${_result!['action']}\n\n${_result!['detail']}",
+                  textAlign: TextAlign.center,
+                ),
+              ),
+          ],
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: const Text('關閉'),
+        ),
+      ],
+    );
+  }
+}
+
+// Ch25 UI
+class _StrangulatedHerniaCalculator extends StatefulWidget {
+  const _StrangulatedHerniaCalculator();
+  @override
+  State<_StrangulatedHerniaCalculator> createState() =>
+      _StrangulatedHerniaCalculatorState();
+}
+
+class _StrangulatedHerniaCalculatorState
+    extends State<_StrangulatedHerniaCalculator> {
+  bool _isStrangulated = false;
+  bool _isBowelNecrosis = false;
+  Map<String, dynamic>? _result;
+  void _calculate() {
+    setState(() {
+      _result = GeneralSurgeryLogic.checkStrangulatedHernia(
+        isStrangulated: _isStrangulated,
+        isBowelNecrosis: _isBowelNecrosis,
+      );
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: const Text('絞扼性疝氣急診處置'),
+      content: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            CheckboxListTile(
+              title: const Text('疑似絞扼 (Strangulated)'),
+              subtitle: const Text('劇痛、紅腫、不可復、腸阻塞'),
+              value: _isStrangulated,
+              activeColor: Colors.red,
+              onChanged: (v) => setState(() => _isStrangulated = v!),
+            ),
+            if (_isStrangulated)
+              CheckboxListTile(
+                title: const Text('術中發現腸壞死/穿孔'),
+                subtitle: const Text('需做腸切除吻合'),
+                value: _isBowelNecrosis,
+                activeColor: Colors.red,
+                onChanged: (v) => setState(() => _isBowelNecrosis = v!),
+              ),
+            const SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: _calculate,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.red,
+                foregroundColor: Colors.white,
+              ),
+              child: const Text('處置建議'),
+            ),
+            if (_result != null)
+              Container(
+                margin: const EdgeInsets.only(top: 10),
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: _result!['status'].contains("🔴")
+                      ? Colors.red.shade50
+                      : (_result!['status'].contains("🟢")
+                            ? Colors.green.shade50
+                            : Colors.orange.shade50),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      _result!['status'],
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Text("🔪 處置: ${_result!['action']}"),
+                    const SizedBox(height: 8),
+                    Text(
+                      "🕸️ Mesh: ${_result!['mesh']}",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: _result!['mesh'].contains("❌")
+                            ? Colors.red
+                            : Colors.black87,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+          ],
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: const Text('關閉'),
+        ),
+      ],
+    );
+  }
+}
+
+// Ch26 UI
+class _InguinalStrategyCalculator extends StatefulWidget {
+  const _InguinalStrategyCalculator();
+  @override
+  State<_InguinalStrategyCalculator> createState() =>
+      _InguinalStrategyCalculatorState();
+}
+
+class _InguinalStrategyCalculatorState
+    extends State<_InguinalStrategyCalculator> {
+  bool _isStrangulated = false;
+  bool _isSymptomatic = false;
+  String _surgeryType = "Unilateral"; // Unilateral, Bilateral, Recurrent
+  Map<String, dynamic>? _result;
+  Map<String, String>? _techResult;
+
+  void _calculate() {
+    setState(() {
+      _result = GeneralSurgeryLogic.checkHerniaSurgeryIndication(
+        isStrangulated: _isStrangulated,
+        isSymptomatic: _isSymptomatic,
+      );
+      _techResult = GeneralSurgeryLogic.getHerniaTechniqueGuide(_surgeryType);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: const Text('鼠蹊部疝氣決策'),
+      content: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              '1. 病情急迫性',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            CheckboxListTile(
+              title: const Text('絞扼性 (Strangulated)'),
+              subtitle: const Text('缺血/腸阻塞'),
+              value: _isStrangulated,
+              activeColor: Colors.red,
+              onChanged: (v) => setState(() => _isStrangulated = v!),
+            ),
+            if (!_isStrangulated)
+              CheckboxListTile(
+                title: const Text('有症狀/卡住 (Symptomatic)'),
+                value: _isSymptomatic,
+                onChanged: (v) => setState(() => _isSymptomatic = v!),
+              ),
+            const Divider(),
+            const Text(
+              '2. 疝氣類型',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            DropdownButtonFormField<String>(
+              value: _surgeryType,
+              items: const [
+                DropdownMenuItem(value: "Unilateral", child: Text("單側原發性")),
+                DropdownMenuItem(value: "Bilateral", child: Text("雙側")),
+                DropdownMenuItem(value: "Recurrent", child: Text("復發型")),
+              ],
+              onChanged: (v) => setState(() => _surgeryType = v!),
+            ),
+            const SizedBox(height: 10),
+            Center(
+              child: ElevatedButton(
+                onPressed: _calculate,
+                child: const Text('分析策略'),
+              ),
+            ),
+            if (_result != null) ...[
+              const SizedBox(height: 15),
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(10),
+                color: _result!['status'].contains("🔴")
+                    ? Colors.red.shade50
+                    : (_result!['status'].contains("🟢")
+                          ? Colors.green.shade50
+                          : Colors.orange.shade50),
+                child: Column(
+                  children: [
+                    Text(
+                      _result!['status'],
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      _result!['action'],
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      _result!['detail'],
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(fontSize: 12),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 10),
+              const Text(
+                '建議術式:',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              Text(
+                "👉 ${_techResult!['rec']}",
+                style: const TextStyle(
+                  color: Colors.blue,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Text(
+                _techResult!['desc']!,
+                style: const TextStyle(fontSize: 12, color: Colors.grey),
+              ),
+            ],
           ],
         ),
       ),
