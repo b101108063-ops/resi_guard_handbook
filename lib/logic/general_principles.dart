@@ -2,20 +2,76 @@
 
 class GeneralPrinciples {
   // ==========================================
-  // Ch1: 預防性抗生素 (Prophylactic Antibiotics)
+  // 1. 預防性抗生素 (Updated!)
   // ==========================================
-  static double calculateCefazolinDose(double weight) {
-    if (weight >= 120) {
-      return 3.0; // 3g
+
+  /// 計算 Cefazolin 劑量 (依據亞東手冊 Ch2)
+  static Map<String, dynamic> calculateCefazolinDose(double weight) {
+    if (weight > 120) {
+      return {"dose": "3 g", "note": "體重 > 120 kg"};
     } else if (weight > 80) {
-      return 2.0; // 2g
+      return {"dose": "2 g", "note": "體重 81 - 120 kg"};
     } else {
-      return 1.0; // 1g
+      return {"dose": "1 g", "note": "體重 ≤ 80 kg"};
+    }
+  }
+
+  /// 評估是否需要術中追加 (Re-dosing)
+  static Map<String, String> checkRedosing({
+    required double hours,
+    required double bloodLoss,
+  }) {
+    bool timeTrigger = hours > 3.0;
+    bool bloodTrigger = bloodLoss > 1500;
+
+    if (timeTrigger || bloodTrigger) {
+      List<String> reasons = [];
+      if (timeTrigger) reasons.add("手術時間 > 3小時");
+      if (bloodTrigger) reasons.add("出血量 > 1500mL");
+      return {
+        "status": "🔴 建議追加劑量",
+        "reason": reasons.join(" + "),
+        "action": "請補充一劑抗生素以維持血中濃度",
+      };
+    } else {
+      return {
+        "status": "🟢 目前不需追加",
+        "reason": "未達追加標準",
+        "action": "持續監測手術時間與出血量",
+      };
+    }
+  }
+
+  /// 取得抗生素指引文字
+  static String getAntibioticGuidelines(String topic) {
+    switch (topic) {
+      case '給藥時機':
+        return "1. 標準：劃刀前 60 分鐘內 (IV)。\n"
+            "2. 例外：Vancomycin / Fluoroquinolone 需提早於 120 分鐘前給予。\n"
+            "3. 剖腹產：劃刀前 1 小時給藥 (不需等斷臍)。";
+      case '手術分類':
+        return "【清潔手術 (Clean)】\n"
+            "- 甲類：原則免用。若用限術前 1 劑。\n"
+            "- 乙類 (植入物/心/腦)：術後 < 24h 停藥。\n\n"
+            "【清潔-汙染 (Clean-Contaminated)】\n"
+            "- 胃腸/膽道/婦科/肺部。\n"
+            "- 術後 < 24h 停藥。\n"
+            "- 大腸直腸需涵蓋厭氧菌 (Cefoxitin 或 Amp+Beta-lac)。";
+      case '特殊手術':
+        return "【大腸直腸 (Colorectal)】\n"
+            "- 非急診 (Elective)：術前一日 19:00, 23:00 口服 Neomycin 2g + Metronidazole 2g。\n\n"
+            "【攝護腺切片 (Biopsy)】\n"
+            "- 術前 12h 口服 Cipro 500mg，術後 12h 再一劑。";
+      case 'MRSA風險':
+        return "- 考慮使用 Vancomycin + Cefazolin。\n"
+            "- 鼻腔定植者：鼻內 Mupirocin (術前1天~術後5天) + Chlorhexidine 沐浴。";
+      default:
+        return "";
     }
   }
 
   // ==========================================
-  // Ch3: 輸液與電解質 (Fluid & Electrolytes)
+  // 2. 輸液計算 (Maintenance)
   // ==========================================
   static Map<String, double> calculateMaintenanceFluid(double weight) {
     double dailyMl = 0;
@@ -26,225 +82,146 @@ class GeneralPrinciples {
     } else {
       dailyMl = 1500 + (weight - 20) * 20;
     }
-    double hourlyRate = dailyMl / 24;
-    return {"daily_ml": dailyMl, "rate_ml_hr": hourlyRate};
+    return {"daily_ml": dailyMl, "rate_ml_hr": dailyMl / 24};
   }
 
   static List<Map<String, String>> getFluidDatabase() {
     return [
       {
-        "name": "0.9% Normal Saline (N/S)",
-        "type": "等張",
-        "content": "Na+: 154, Cl-: 154",
-        "usage": "休克急救、輸血前後。",
-        "warning": "易致高氯性酸中毒。",
+        "name": "N/S (Normal Saline)",
+        "type": "等張溶液",
+        "content": "Na 154, Cl 154 (mEq/L)",
+        "usage": "休克復甦首選、輸血前後、代謝性鹼中毒。",
+        "warning": "大量輸注恐致高氯性酸中毒。",
       },
       {
-        "name": "Lactated Ringer's (L/R)",
-        "type": "等張",
-        "content": "Na+: 130, K+: 4, Ca++: 3, Lactate: 28",
-        "usage": "燒傷、急性失血。",
-        "warning": "含鉀鈣，腎衰竭/輸血慎用。",
+        "name": "L/R (Lactated Ringer's)",
+        "type": "等張溶液",
+        "content": "Na 130, K 4, Ca 3, Cl 109, Lactate 28",
+        "usage": "手術中體液補充、燒燙傷、矯正酸中毒。",
+        "warning": "含鉀 (洗腎慎用)、含鈣 (不可與輸血同一管路)。",
       },
       {
-        "name": "5% Dextrose (D5W)",
-        "type": "等張->低張",
-        "content": "Glucose: 50g/L",
-        "usage": "補充自由水。",
-        "warning": "腦傷/腦水腫禁用。",
-      },
-      {
-        "name": "0.45% Saline (Half Saline)",
-        "type": "低張",
-        "content": "Na+: 77, Cl-: 77",
-        "usage": "高滲透壓狀態維持。",
-        "warning": "過快易致腦水腫。",
+        "name": "D5W (5% Glucose)",
+        "type": "等張 -> 低張",
+        "content": "Glucose 50g/L",
+        "usage": "補充水分、提供基本熱量 (170kcal/L)。",
+        "warning": "不適合休克復甦 (留不住血管內)。腦水腫禁用。",
       },
       {
         "name": "3% NaCl",
-        "type": "高張",
-        "content": "Na+: 513",
-        "usage": "嚴重低血鈉 (<120) 合併症狀。",
-        "warning": "高危險藥品！小心 CPM。",
+        "type": "高張溶液",
+        "content": "Na 513, Cl 513",
+        "usage": "嚴重低血鈉 (Symptomatic Hyponatremia)。",
+        "warning": "需緩慢輸注，避免 CPM (腦橋解髓鞘)。ICU 監測。",
       },
       {
-        "name": "Taita No.1",
-        "type": "低張",
-        "content": "Na+: 38, K+: 0",
-        "usage": "嬰兒維持。",
-        "warning": "成人極易低血鈉。",
-      },
-      {
-        "name": "Taita No.2",
-        "type": "低張",
-        "content": "Na+: 56, K+: 20",
-        "usage": "一般維持 (含鉀)。",
-        "warning": "腎衰竭慎用。",
-      },
-      {
-        "name": "Taita No.4",
-        "type": "低張",
-        "content": "Na+: 30, K+: 20",
-        "usage": "低張性脫水。",
-        "warning": "含磷，腎衰竭慎用！",
-      },
-      {
-        "name": "Taita No.5",
-        "type": "高張",
-        "content": "G: 10%, Na: 40, K: 10",
-        "usage": "需熱量/肝病。",
-        "warning": "易靜脈炎。",
+        "name": "0.45% S (Half Saline)",
+        "type": "低張溶液",
+        "content": "Na 77, Cl 77",
+        "usage": "高滲透壓狀態 (HHS)、嚴重高血鈉。",
+        "warning": "輸注過快恐致腦水腫。",
       },
     ];
   }
 
   // ==========================================
-  // Ch4: 營養支持 (Nutritional Support) - Updated
-  // ==========================================
-
-  /// 進階營養需求計算
-  /// 依據：一般病房 vs ICU (Acute/Recovery) vs CKD/Dialysis
-  static Map<String, String> calculateAdvancedNutrition({
-    required double weight,
-    required String
-    condition, // 'General', 'ICU_Acute', 'ICU_Recovery', 'CKD_Pre', 'CKD_Dialysis', 'CRRT'
-  }) {
-    String calorieTarget = "";
-    String proteinTarget = "";
-    String note = "";
-
-    switch (condition) {
-      case 'ICU_Acute': // ICU 急性期
-        // 熱量: 保守 15-20 kcal/kg
-        // 蛋白: 高代謝 1.2-2.0 g/kg
-        calorieTarget =
-            "${(weight * 15).toInt()} - ${(weight * 20).toInt()} kcal";
-        proteinTarget =
-            "${(weight * 1.2).toStringAsFixed(1)} - ${(weight * 2.0).toStringAsFixed(1)} g";
-        note = "急性期避免過度餵食 (Permissive underfeeding)。\n優先使用腸道營養 (EN)。";
-        break;
-
-      case 'ICU_Recovery': // ICU 恢復期
-        // 熱量: 25-30 kcal/kg
-        // 蛋白: 1.2-2.0 g/kg
-        calorieTarget =
-            "${(weight * 25).toInt()} - ${(weight * 30).toInt()} kcal";
-        proteinTarget =
-            "${(weight * 1.2).toStringAsFixed(1)} - ${(weight * 2.0).toStringAsFixed(1)} g";
-        note = "進入同化期 (Anabolic)，需增加熱量支持復健。";
-        break;
-
-      case 'CKD_Pre': // 腎病未透析
-        // 熱量: 30 kcal/kg
-        // 蛋白: 限制 0.6-0.8 g/kg
-        calorieTarget = "${(weight * 30).toInt()} kcal";
-        proteinTarget =
-            "${(weight * 0.6).toStringAsFixed(1)} - ${(weight * 0.8).toStringAsFixed(1)} g";
-        note = "需限制蛋白質以延緩腎功能惡化。";
-        break;
-
-      case 'CKD_Dialysis': // 洗腎 (HD/PD)
-        // 熱量: 30-35 kcal/kg
-        // 蛋白: 1.2-1.3 g/kg (流失增加)
-        calorieTarget =
-            "${(weight * 30).toInt()} - ${(weight * 35).toInt()} kcal";
-        proteinTarget =
-            "${(weight * 1.2).toStringAsFixed(1)} - ${(weight * 1.3).toStringAsFixed(1)} g";
-        note = "透析會流失胺基酸，需增加蛋白質攝取。";
-        break;
-
-      case 'CRRT': // 連續透析 (重症)
-        // 熱量: 25-30 kcal/kg
-        // 蛋白: 2.0-2.5 g/kg
-        calorieTarget =
-            "${(weight * 25).toInt()} - ${(weight * 30).toInt()} kcal";
-        proteinTarget =
-            "2.0 - 2.5 g/kg (${(weight * 2.0).toStringAsFixed(1)} - ${(weight * 2.5).toStringAsFixed(1)} g)";
-        note = "CRRT 濾除大量營養素，需極高蛋白補充。";
-        break;
-
-      case 'General': // 一般外科術後
-      default:
-        // 熱量: 25-30 kcal/kg
-        // 蛋白: 1.0-1.2 g/kg
-        calorieTarget =
-            "${(weight * 25).toInt()} - ${(weight * 30).toInt()} kcal";
-        proteinTarget =
-            "${(weight * 1.0).toStringAsFixed(1)} - ${(weight * 1.2).toStringAsFixed(1)} g";
-        note = "若有傷口/感染/癌症，壓力因子需 x 1.2-1.5。";
-        break;
-    }
-
-    return {"Calories": calorieTarget, "Protein": proteinTarget, "Note": note};
-  }
-
-  /// 飲食質地介紹
-  static List<Map<String, String>> getDietTypes() {
-    return [
-      {
-        "title": "清流質 (Clear Liquid)",
-        "desc": "米湯、舒跑、過濾果汁。\n適應症：術前清腸、剛恢復腸蠕動。\n⚠️ 營養不足，勿長期使用。",
-      },
-      {
-        "title": "全流質 (Full Liquid)",
-        "desc": "牛奶、濃湯、安素、米漿。\n適應症：食道狹窄、咀嚼困難、吞嚥稍差。",
-      },
-      {"title": "半流質 (Semi-Liquid)", "desc": "鹹粥、湯麵 (剁碎煮爛)。\n適應症：消化不良、牙齒咬合不佳。"},
-      {"title": "軟質飲食 (Soft Diet)", "desc": "質地軟爛的固體食物。\n適應症：老年人、術後恢復期。"},
-      {"title": "低渣飲食 (Low Residue)", "desc": "去皮去筋，減少纖維。\n適應症：大腸直腸手術前後、腸阻塞。"},
-      {"title": "低油飲食 (Low Fat)", "desc": "脂肪 < 50g/day。\n適應症：膽囊炎、胰臟炎、乳糜胸。"},
-    ];
-  }
-
-  /// 重症營養指引內容
-  static String getICUNutritionGuide(String topic) {
-    switch (topic) {
-      case 'EN vs PN':
-        return "🏆 首選腸道營養 (EN):\n"
-            "只要腸胃有功能，應在血動穩定 24-48hr 內開始。\n"
-            "優點：維持腸黏膜、減少細菌轉移 (Translocation)。\n\n"
-            "💉 靜脈營養 (PN):\n"
-            "若 EN 無法達標，建議第 3-7 天後再加 Supplemental PN。\n"
-            "勿過早全 PN (增加感染風險)。";
-      case 'Refeeding Syndrome':
-        return "⚠️ 再餵食症候群:\n"
-            "高風險：BMI<16、長期禁食 (>5天)。\n"
-            "機轉：胰島素分泌 -> 磷/鉀/鎂 快速進入細胞 -> 血清濃度驟降。\n"
-            "處置：\n"
-            "1. 初始熱量保守 (< 20 kcal/kg)。\n"
-            "2. 前 72hr 監測 P, K, Mg。\n"
-            "3. 補充維生素 B1 (Thiamine)。";
-      case 'Gastric Residual (GRV)':
-        return "📊 胃殘餘量 (GRV):\n"
-            "觀念：GRV 不應作為耐受性唯一指標。\n"
-            "閾值：建議設為 500 mL。\n"
-            "處置：若 > 500mL，先加促進蠕動藥 (Metoclopramide/Erythromycin) 或改幽門後灌食 (NJ tube)。\n"
-            "勿因低 GRV 而隨意停止灌食。";
-      default:
-        return "";
-    }
-  }
-
-  // ==========================================
-  // Ch5: 傷口與引流管 (Wound & Drains)
+  // 3. 吻合口滲漏 (Anastomotic Leak)
   // ==========================================
   static String assessAnastomoticLeak({
     required int postOpDay,
-    required String drainContent, // Clear, Turbid, Stool-like
+    required String drainContent,
     required bool hasFever,
     required bool hasPeritonitis,
   }) {
-    if (hasPeritonitis || drainContent == 'Stool-like') {
-      return "🚨 高度懷疑滲漏 (Leak)！\n建議：NPO、IV 抗生素、安排 CT 或緊急手術探查。";
-    }
-    if (postOpDay >= 3 && (hasFever || drainContent == 'Turbid')) {
-      return "⚠️ 疑似滲漏或感染 (Leak/Abscess)。\n建議：保持引流管暢通，監測引流量與 Amylase/Bilirubin，安排 CT。";
-    }
-    return "✅ 目前無明顯滲漏跡象。\n建議：持續觀察引流液性質。";
+    if (hasPeritonitis) return "🚨 [危急] 腹膜炎徵象：強烈懷疑滲漏或破裂，建議緊急 CT 或手術探查。";
+    if (drainContent.contains('Stool') || drainContent.contains('Bile'))
+      return "🚨 [高風險] 引流管見糞水/膽汁：確診滲漏，需 NPO + 抗生素 + 引流。";
+    if (postOpDay >= 3 && (hasFever || drainContent == 'Turbid'))
+      return "⚠️ [疑似] 術後 >3 天發燒或引流混濁：建議安排 CT 排除腹內膿瘍/滲漏。";
+    return "✅ 目前風險較低，持續觀察引流管與 Vital signs。";
   }
 
   // ==========================================
-  // Ch8: 法律與倫理 (Consent)
+  // 4. 營養支持 (Nutrition)
+  // ==========================================
+  static Map<String, String> calculateAdvancedNutrition({
+    required double weight,
+    required String condition,
+  }) {
+    double calMin = 25, calMax = 30;
+    double proMin = 1.0, proMax = 1.2;
+    String note = "一般術後標準";
+
+    switch (condition) {
+      case 'ICU_Acute':
+        calMin = 20;
+        calMax = 25;
+        proMin = 1.2;
+        proMax = 1.5;
+        note = "急性期避免過度餵食 (Permissive underfeeding)";
+        break;
+      case 'ICU_Recovery':
+        calMin = 25;
+        calMax = 30;
+        proMin = 1.5;
+        proMax = 2.0;
+        note = "恢復期需高蛋白合成肌肉，注意腎功能";
+        break;
+      case 'CKD_Pre':
+        calMin = 30;
+        calMax = 35;
+        proMin = 0.6;
+        proMax = 0.8;
+        note = "未透析腎病需限制蛋白質";
+        break;
+      case 'CKD_Dialysis':
+        calMin = 30;
+        calMax = 35;
+        proMin = 1.2;
+        proMax = 1.3;
+        note = "洗腎病人流失胺基酸，需補回蛋白質";
+        break;
+      case 'CRRT':
+        calMin = 25;
+        calMax = 30;
+        proMin = 1.5;
+        proMax = 2.0;
+        note = "CRRT 會濾出大量營養，需高蛋白";
+        break;
+    }
+
+    return {
+      "Calories":
+          "${(weight * calMin).toInt()} - ${(weight * calMax).toInt()} kcal",
+      "Protein":
+          "${(weight * proMin).toStringAsFixed(1)} - ${(weight * proMax).toStringAsFixed(1)} g",
+      "Note": note,
+    };
+  }
+
+  static List<Map<String, String>> getDietTypes() {
+    return [
+      {"title": "Clear Liquid (清流質)", "desc": "水、運動飲料、無渣果汁。適用：術後剛排氣、腸鏡前。"},
+      {"title": "Full Liquid (全流質)", "desc": "牛奶、豆漿、米湯、濃湯。適用：吞嚥困難、過渡期。"},
+      {"title": "Soft Diet (軟質)", "desc": "稀飯、麵條、軟爛肉類。適用：牙口不好、腸胃消化弱。"},
+      {"title": "Low Residue (低渣)", "desc": "去皮去筋、避免粗纖維。適用：腸道手術前後、發炎性腸道疾病。"},
+      {"title": "Diabetic Diet (糖尿病)", "desc": "定時定量、控制醣類。適用：DM 病人。"},
+    ];
+  }
+
+  static String getICUNutritionGuide(String topic) {
+    if (topic.contains('EN vs PN'))
+      return "原則：Gut works, use it!\n1. 首選 EN (腸道營養)，維護腸黏膜屏障。\n2. 若 EN < 60% 目標量超過 3-7 天，才考慮加 PN。\n3. 休克未穩定 (高劑量升壓劑) 時暫停 EN。";
+    if (topic.contains('Refeeding'))
+      return "高風險：BMI<16、禁食>7天、酗酒。\n特徵：低磷、低鉀、低鎂、心衰竭。\n預防：從 50% 目標熱量開始，補充電解質與維生素 B1。";
+    if (topic.contains('Residual'))
+      return "GRV (胃殘餘量) 指引：\n1. GRV < 500ml 且無嘔吐/腹脹 -> 繼續餵食。\n2. 不建議常規監測 GRV (易導致不必要的中斷)。\n3. 若 GRV 高，可加用 Prokinetics (Metoclopramide)。";
+    return "";
+  }
+
+  // ==========================================
+  // 5. 知情同意 (Informed Consent)
   // ==========================================
   static Map<String, dynamic> validateConsent({
     required bool isAdult,
@@ -255,18 +232,21 @@ class GeneralPrinciples {
     if (isEmergency) {
       return {
         "canSign": true,
-        "msg": "⚠️ 緊急醫療 (兩位醫師證明)\n為挽救生命可先行處置，事後盡快補簽同意書。",
+        "msg": "🚨 緊急情況：\n為挽救生命，若無法取得同意，由兩位醫師簽署病歷後即可進行醫療處置 (醫療法規定)。",
       };
     }
-    if (isSedated) {
-      return {"canSign": false, "msg": "❌ 病人受鎮靜藥物影響\n此時簽署無效。需等藥效退去或由法定代理人簽署。"};
-    }
     if (!isAdult) {
-      return {"canSign": false, "msg": "❌ 未成年人\n需由法定代理人 (父母/監護人) 簽署。"};
+      return {"canSign": false, "msg": "❌ 未成年：\n需由法定代理人 (父母) 簽署。"};
+    }
+    if (isSedated) {
+      return {
+        "canSign": false,
+        "msg": "❌ 受藥物影響：\n病人處於鎮靜/麻醉狀態，意識不清，簽署無效。需待藥效退去或由代理人簽署。",
+      };
     }
     if (!isOriented) {
-      return {"canSign": false, "msg": "❌ 意識不清/譫妄\n需由法定代理人或醫療委任代理人簽署。"};
+      return {"canSign": false, "msg": "❌ 意識不清：\n無法理解資訊，需由法定代理人/配偶/親屬簽署。"};
     }
-    return {"canSign": true, "msg": "✅ 病人具備簽署能力\n請解釋病情並完成簽署。"};
+    return {"canSign": true, "msg": "✅ 有效簽署：\n病人意識清楚且具行為能力，可自行簽署。"};
   }
 }

@@ -24,7 +24,7 @@ class GeneralSection extends StatelessWidget {
           _buildItem(
             context,
             '預防性抗生素',
-            'Cefazolin 劑量計算',
+            'Cefazolin 劑量、Re-dosing',
             Icons.medication,
             () => showDialog(
               context: context,
@@ -99,7 +99,7 @@ class GeneralSection extends StatelessWidget {
 }
 
 // ==========================================
-// 1. 抗生素計算機
+// 1. 抗生素計算機 & 指引
 // ==========================================
 class _AntibioticCalculator extends StatefulWidget {
   const _AntibioticCalculator();
@@ -108,58 +108,209 @@ class _AntibioticCalculator extends StatefulWidget {
 }
 
 class _AntibioticCalculatorState extends State<_AntibioticCalculator> {
+  // Dosing
   final _weightController = TextEditingController();
-  String _result = "";
-  void _calculate() {
-    if (_weightController.text.isEmpty) return;
-    double weight = double.tryParse(_weightController.text) ?? 0;
-    double dose = GeneralPrinciples.calculateCefazolinDose(weight);
-    setState(() {
-      _result = "建議劑量：${dose.toStringAsFixed(0)} g\n";
-      if (weight >= 120)
-        _result += "(體重 ≥ 120kg)";
-      else if (weight > 80)
-        _result += "(體重 > 80kg)";
-      else
-        _result += "(標準體重)";
-    });
+  Map<String, dynamic>? _doseResult;
+
+  // Re-dosing
+  final _timeController = TextEditingController();
+  final _bloodLossController = TextEditingController();
+  Map<String, String>? _redoseResult;
+
+  void _calculateDose() {
+    double w = double.tryParse(_weightController.text) ?? 0;
+    if (w > 0) {
+      setState(() => _doseResult = GeneralPrinciples.calculateCefazolinDose(w));
+    }
+  }
+
+  void _checkRedosing() {
+    double t = double.tryParse(_timeController.text) ?? 0;
+    double b = double.tryParse(_bloodLossController.text) ?? 0;
+    setState(
+      () => _redoseResult = GeneralPrinciples.checkRedosing(
+        hours: t,
+        bloodLoss: b,
+      ),
+    );
+  }
+
+  void _showGuide(String topic) {
+    showDialog(
+      context: context,
+      builder: (c) => AlertDialog(
+        title: Text(topic),
+        content: Text(
+          GeneralPrinciples.getAntibioticGuidelines(topic),
+          style: const TextStyle(fontSize: 15, height: 1.5),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(c),
+            child: const Text('關閉'),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('預防性抗生素計算'),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          TextField(
-            controller: _weightController,
-            keyboardType: TextInputType.number,
-            decoration: const InputDecoration(
-              labelText: '病人體重',
-              suffixText: 'kg',
-              border: OutlineInputBorder(),
-            ),
-            onChanged: (v) => _calculate(),
-          ),
-          const SizedBox(height: 20),
-          if (_result.isNotEmpty)
-            Container(
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                color: Colors.teal.shade50,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Text(
-                _result,
-                style: const TextStyle(
-                  fontSize: 18,
+      title: const Text('預防性抗生素指引'),
+      content: SizedBox(
+        width: double.maxFinite,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Section 1: Dosing
+              const Text(
+                '💊 術前劑量 (Cefazolin)',
+                style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.teal,
                 ),
               ),
-            ),
-        ],
+              const SizedBox(height: 8),
+              Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: _weightController,
+                      keyboardType: TextInputType.number,
+                      decoration: const InputDecoration(
+                        labelText: '體重 (kg)',
+                        isDense: true,
+                        border: OutlineInputBorder(),
+                      ),
+                      onChanged: (v) => _calculateDose(),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  if (_doseResult != null)
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            _doseResult!['dose'],
+                            style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.blue,
+                            ),
+                          ),
+                          Text(
+                            _doseResult!['note'],
+                            style: const TextStyle(
+                              fontSize: 12,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                ],
+              ),
+
+              const Divider(height: 24),
+
+              // Section 2: Re-dosing
+              const Text(
+                '🩸 術中追加 (Re-dosing)',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.redAccent,
+                ),
+              ),
+              const SizedBox(height: 8),
+              Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: _timeController,
+                      keyboardType: TextInputType.number,
+                      decoration: const InputDecoration(
+                        labelText: '手術時間 (hr)',
+                        isDense: true,
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: TextField(
+                      controller: _bloodLossController,
+                      keyboardType: TextInputType.number,
+                      decoration: const InputDecoration(
+                        labelText: '出血量 (mL)',
+                        isDense: true,
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: _checkRedosing,
+                  child: const Text('評估是否追加'),
+                ),
+              ),
+              if (_redoseResult != null)
+                Container(
+                  margin: const EdgeInsets.only(top: 8),
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: _redoseResult!['status']!.contains("🔴")
+                        ? Colors.red.shade50
+                        : Colors.green.shade50,
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                  child: Text(
+                    "${_redoseResult!['status']}\n${_redoseResult!['reason']}",
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+
+              const Divider(height: 24),
+
+              // Section 3: Guidelines
+              const Text(
+                '📚 臨床指引速查',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blueGrey,
+                ),
+              ),
+              Wrap(
+                spacing: 8,
+                children: [
+                  ActionChip(
+                    label: const Text('給藥時機'),
+                    onPressed: () => _showGuide('給藥時機'),
+                  ),
+                  ActionChip(
+                    label: const Text('手術分類'),
+                    onPressed: () => _showGuide('手術分類'),
+                  ),
+                  ActionChip(
+                    label: const Text('特殊手術'),
+                    onPressed: () => _showGuide('特殊手術'),
+                  ),
+                  ActionChip(
+                    label: const Text('MRSA'),
+                    onPressed: () => _showGuide('MRSA風險'),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
       ),
       actions: [
         TextButton(
@@ -172,7 +323,7 @@ class _AntibioticCalculatorState extends State<_AntibioticCalculator> {
 }
 
 // ==========================================
-// 2. 輸液計算機
+// 2. 輸液計算機 (Fixed Null Safety Issue)
 // ==========================================
 class _FluidCalculator extends StatefulWidget {
   const _FluidCalculator();
@@ -213,14 +364,18 @@ class _FluidCalculatorState extends State<_FluidCalculator> {
             separatorBuilder: (c, i) => const Divider(),
             itemBuilder: (c, i) {
               var f = fluids[i];
+              // ⚠️ 修正點：使用 ?? '' 確保字串不為 null，避免 .contains() 報錯
+              String typeStr = f['type'] ?? '';
               Color typeColor = Colors.grey;
-              if (f['type']!.contains('等張')) typeColor = Colors.green;
-              if (f['type']!.contains('高張')) typeColor = Colors.red;
-              if (f['type']!.contains('低張')) typeColor = Colors.orange;
+
+              if (typeStr.contains('等張')) typeColor = Colors.green;
+              if (typeStr.contains('高張')) typeColor = Colors.red;
+              if (typeStr.contains('低張')) typeColor = Colors.orange;
+
               return ListTile(
                 contentPadding: EdgeInsets.zero,
                 title: Text(
-                  f['name']!,
+                  f['name'] ?? '',
                   style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
                 subtitle: Column(
@@ -239,7 +394,7 @@ class _FluidCalculatorState extends State<_FluidCalculator> {
                             borderRadius: BorderRadius.circular(4),
                           ),
                           child: Text(
-                            f['type']!,
+                            typeStr,
                             style: TextStyle(
                               color: typeColor,
                               fontSize: 12,
@@ -251,14 +406,14 @@ class _FluidCalculatorState extends State<_FluidCalculator> {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      "成分: ${f['content']}",
+                      "成分: ${f['content'] ?? ''}",
                       style: const TextStyle(
                         fontSize: 13,
                         color: Colors.black87,
                       ),
                     ),
                     Text(
-                      "用途: ${f['usage']}",
+                      "用途: ${f['usage'] ?? ''}",
                       style: const TextStyle(fontSize: 13),
                     ),
                     if (f['warning'] != null)
@@ -474,7 +629,7 @@ class _LeakAssessmentState extends State<_LeakAssessment> {
 }
 
 // ==========================================
-// 4. 營養計算機 (Nutrition) - Updated
+// 4. 營養計算機 (Nutrition)
 // ==========================================
 class _NutritionCalculator extends StatefulWidget {
   const _NutritionCalculator();
