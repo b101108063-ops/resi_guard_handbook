@@ -41,18 +41,18 @@ class ReferenceSidebar extends StatelessWidget {
                 _buildPdfItem(
                   context,
                   "亞東抗生素指引 (院內版)",
-                  "assets/pdfs/ch2_antibiotics.pdf", // 請確認 assets 資料夾有此檔案
+                  "assets/pdfs/femh_surg_2025.pdf", // 請確認 assets 資料夾有此檔案
                 ),
                 _buildPdfItem(
                   context,
                   "Surgical Prophylaxis (ASHP)",
-                  "assets/pdfs/ashp_guideline.pdf",
+                  "assets/pdfs/femh_surg_2025.pdf",
                 ),
                 _buildSectionHeader("Ch25-26 疝氣手術"),
                 _buildPdfItem(
                   context,
                   "EHS Hernia Guidelines 2024",
-                  "assets/pdfs/hernia_2024.pdf",
+                  "assets/pdfs/femh_surg_2025.pdf",
                 ),
               ],
             ),
