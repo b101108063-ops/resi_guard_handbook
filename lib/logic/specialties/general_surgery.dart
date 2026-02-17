@@ -802,4 +802,95 @@ class GeneralSurgeryLogic {
    - 併發症：血腫、尿滯留 (最常見)、慢性疼痛、極少見的睪丸萎縮。
 """;
   }
+
+  // ==========================================
+  // Ch27: 小腸腫瘤 (Small Bowel Tumors) - NEW!
+  // ==========================================
+
+  /// 取得不同腫瘤類型的詳細資訊
+  static List<Map<String, String>> getSmallBowelTumorTypes() {
+    return [
+      {
+        "type": "腺癌 (Adenocarcinoma)",
+        "loc": "十二指腸、近端空腸",
+        "surgery": "根治性切除 (Radical) + 淋巴廓清",
+        "key": "關鍵：必須清除 ≥ 8 顆區域淋巴結以確保分期準確。\n預後：5年存活率 30-71%。",
+        "note": "高風險者 (Stage II-III) 可考慮輔助化療 (5-FU based)。"
+      },
+      {
+        "type": "間質瘤 (GIST)",
+        "loc": "全腸道 (小腸佔 25%)",
+        "surgery": "完整切除 (R0) 即可",
+        "key": "特徵：CD117(+)。\n禁忌：不需淋巴廓清 (少轉移)、嚴禁弄破假包膜 (Pseudocapsule)。",
+        "note": "高風險群需使用標靶藥物 (Imatinib)。"
+      },
+      {
+        "type": "神經內分泌瘤 (NET/Carcinoid)",
+        "loc": "迴腸 (Ileum)",
+        "surgery": "腸段切除 / 減容手術",
+        "key": "類癌症候群 (Carcinoid syndrome)：臉潮紅、腹瀉、瓣膜病變。\n通常發生於「肝轉移」後。",
+        "note": "藥物：Somatostatin analogues (Octreotide) 可緩解症狀。"
+      },
+      {
+        "type": "淋巴瘤 (Lymphoma)",
+        "loc": "迴腸 (Ileum)",
+        "surgery": "僅用於診斷或併發症處理",
+        "key": "型態：B-cell 為主 (DLBCL, MALT)。T-cell 預後差 (與 Celiac disease 相關)。",
+        "note": "治療主力為系統性化療 (Chemotherapy)。"
+      },
+    ];
+  }
+
+  /// 小腸 GIST 風險評估 (依據 Modified NIH Criteria 簡化版概算)
+  /// 用於提示是否需要輔助治療
+  static Map<String, dynamic> assessGistRisk({
+    required double sizeCm,
+    required double mitoticCount, // per 50 HPF
+  }) {
+    // 這是針對 "小腸 (Jejunum/Ileum)" 的 GIST 風險標準 (比胃 GIST 嚴格)
+    String risk = "Low Risk";
+    bool needAdjuvant = false;
+
+    if (sizeCm > 10 || mitoticCount > 5) {
+      risk = "High Risk (高復發風險)";
+      needAdjuvant = true;
+    } else if (sizeCm > 5 && mitoticCount <= 5) {
+      risk = "Moderate Risk (中度風險)";
+      needAdjuvant = false; // 依指引通常建議考慮，但非絕對
+    } else if (sizeCm > 2 && sizeCm <= 5 && mitoticCount > 5) {
+      risk = "High Risk (高復發風險)";
+      needAdjuvant = true;
+    } else {
+      risk = "Low / Very Low Risk";
+      needAdjuvant = false;
+    }
+
+    return {
+      "risk": risk,
+      "action": needAdjuvant 
+          ? "🔴 建議術後輔助治療 (Imatinib)" 
+          : "🟢 定期追蹤 (Surveillance)",
+      "detail": "小腸 GIST 惡性潛能較胃部高，>5cm 或核分裂顯著即屬高風險。"
+    };
+  }
+
+  /// 臨床表現與診斷文字
+  static String getSmallBowelDiagnosisInfo() {
+    return """
+【臨床表現】
+- 症狀非特異性 (腹痛/貧血/體重減輕)，導致診斷平均延遲數月。
+- 良性：常表現為出血 (Bleeding)。
+- 惡性：常表現為阻塞 (Obstruction)。
+
+【診斷工具】
+1. 出血病人首選：
+   - 膠囊內視鏡 (Capsule Endoscopy)
+   - 氣囊輔助小腸鏡 (DBE/SBE)
+   - 建議：出血 48-72 小時內進行。
+
+2. 影像學：
+   - CT Enterography (CTE) 或 MRI 為佳。
+   - 傳統鋇劑攝影診斷率有限。
+""";
+  }
 }

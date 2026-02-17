@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import '../logic/specialties/general_surgery.dart'; // 連結一般外科邏輯
+import 'chapters/ch28_appendix.dart';
+import 'chapters/ch29_hipec.dart';
+import 'chapters/ch30_peptic_ulcer.dart';
 
 class SurgerySection extends StatelessWidget {
   const SurgerySection({super.key});
@@ -16,7 +19,7 @@ class SurgerySection extends StatelessWidget {
           "一般外科 (GS)",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        subtitle: const Text("甲乳、胃腸、肝膽、疝氣 (Ch9-Ch26)"),
+        subtitle: const Text("甲乳、胃腸、肝膽、疝氣 (Ch9-Ch27)"),
         children: [
           _buildItem(
             context,
@@ -124,8 +127,6 @@ class SurgerySection extends StatelessWidget {
             Icons.pie_chart,
             () => _showPancreaticDialog(context),
           ),
-
-          // Ch24: 胰臟良性/PNET
           _buildItem(
             context,
             '胰臟囊腫與 PNET',
@@ -133,8 +134,6 @@ class SurgerySection extends StatelessWidget {
             Icons.bubble_chart,
             () => _showPancreaticBenignDialog(context),
           ),
-
-          // Ch25: 腹壁疝氣 (修正名稱)
           _buildItem(
             context,
             '腹壁疝氣 (Ventral Hernia)',
@@ -142,8 +141,6 @@ class SurgerySection extends StatelessWidget {
             Icons.grid_on,
             () => _showVentralHerniaDialog(context),
           ),
-
-          // Ch26: 鼠蹊部疝氣
           _buildItem(
             context,
             '鼠蹊部疝氣 (Inguinal)',
@@ -151,6 +148,18 @@ class SurgerySection extends StatelessWidget {
             Icons.accessibility_new,
             () => _showInguinalHerniaDialog(context),
           ),
+
+          // Ch27: 小腸腫瘤 (New!)
+          _buildItem(
+            context,
+            '小腸腫瘤 (Small Bowel)',
+            'Adeno, GIST, NET 處置',
+            Icons.linear_scale,
+            () => _showSmallBowelDialog(context),
+          ),
+          const Ch28AppendixTile(),
+          const Ch29HipecTile(),
+          const Ch30PepticUlcerTile(),
         ],
       ),
     );
@@ -209,7 +218,7 @@ class SurgerySection extends StatelessWidget {
   }
 
   // ==========================================
-  // Dialog 實作區 (Ch9 - Ch26)
+  // Dialog 實作區 (Ch9 - Ch27)
   // ==========================================
 
   void _showThyroidIndicationDialog(BuildContext context) {
@@ -482,7 +491,6 @@ class SurgerySection extends StatelessWidget {
     );
   }
 
-  // --- Ch12: 裂孔疝氣 (已改名) ---
   void _showHiatalHerniaDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -1413,7 +1421,6 @@ class SurgerySection extends StatelessWidget {
     );
   }
 
-  // --- Ch24: 胰臟良性/PNET (UI Implementation) ---
   void _showPancreaticBenignDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -1535,9 +1542,7 @@ class SurgerySection extends StatelessWidget {
     );
   }
 
-  // --- Ch25: 腹壁疝氣 (UI Implementation) ---
   void _showVentralHerniaDialog(BuildContext context) {
-    // Changed name to avoid conflict
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
@@ -1627,7 +1632,6 @@ class SurgerySection extends StatelessWidget {
     );
   }
 
-  // --- Ch26: 鼠蹊部疝氣 (UI Implementation) ---
   void _showInguinalHerniaDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -1737,10 +1741,154 @@ class SurgerySection extends StatelessWidget {
       ),
     );
   }
+
+  // --- Ch27: 小腸腫瘤 (NEW!) ---
+  void _showSmallBowelDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (ctx) => DefaultTabController(
+        length: 3,
+        child: Dialog(
+          insetPadding: const EdgeInsets.all(16),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const TabBar(
+                labelColor: Colors.teal,
+                indicatorColor: Colors.teal,
+                tabs: [
+                  Tab(text: "總論"),
+                  Tab(text: "腫瘤"),
+                  Tab(text: "GIST"),
+                ],
+              ),
+              SizedBox(
+                height: 450, // 固定高度供 TabBarView 使用
+                child: TabBarView(
+                  children: [
+                    // Tab 1: 總論
+                    SingleChildScrollView(
+                      padding: const EdgeInsets.all(16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            "流行病學與風險",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                              color: Colors.blueGrey,
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          const Text(
+                            "• 罕見：僅佔消化道惡性腫瘤 3.8%。\n• 危險因子：Crohn's, FAP, Celiac disease (淋巴瘤)。",
+                          ),
+                          const Divider(height: 24),
+                          const Text(
+                            "臨床診斷",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                              color: Colors.blueGrey,
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          Text(
+                            GeneralSurgeryLogic.getSmallBowelDiagnosisInfo(),
+                            style: const TextStyle(height: 1.5),
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    // Tab 2: 腫瘤類型
+                    SingleChildScrollView(
+                      padding: const EdgeInsets.all(12),
+                      child: Column(
+                        children: GeneralSurgeryLogic.getSmallBowelTumorTypes()
+                            .map(
+                              (t) => Card(
+                                elevation: 0,
+                                color: Colors.grey.shade50,
+                                margin: const EdgeInsets.only(bottom: 12),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                  side: BorderSide(color: Colors.grey.shade300),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(12),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        t['type']!,
+                                        style: const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 16,
+                                          color: Colors.teal,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 4),
+                                      Text(
+                                        "📍 位置: ${t['loc']}",
+                                        style: TextStyle(
+                                          color: Colors.grey.shade700,
+                                          fontSize: 12,
+                                        ),
+                                      ),
+                                      const Divider(),
+                                      Text(
+                                        "🔪 手術: ${t['surgery']}",
+                                        style: const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 6),
+                                      Text(
+                                        t['key']!,
+                                        style: const TextStyle(height: 1.4),
+                                      ),
+                                      const SizedBox(height: 6),
+                                      Text(
+                                        "💡 ${t['note']}",
+                                        style: TextStyle(
+                                          color: Colors.orange.shade800,
+                                          fontSize: 12,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            )
+                            .toList(),
+                      ),
+                    ),
+
+                    // Tab 3: GIST 計算機
+                    const Padding(
+                      padding: EdgeInsets.all(16),
+                      child: _GistCalculator(),
+                    ),
+                  ],
+                ),
+              ),
+              TextButton(
+                onPressed: () => Navigator.pop(ctx),
+                child: const Text('關閉'),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }
 
 // ==========================================
-// 獨立計算機 Widgets (Ch9 - Ch26)
+// 獨立計算機 Widgets (Ch9 - Ch27)
 // ==========================================
 
 class _LiverTumorCalculator extends StatefulWidget {
@@ -2836,6 +2984,102 @@ class _InguinalStrategyCalculatorState
           onPressed: () => Navigator.pop(context),
           child: const Text('關閉'),
         ),
+      ],
+    );
+  }
+}
+
+// Ch27 UI: GIST Calculator (NEW!)
+class _GistCalculator extends StatefulWidget {
+  const _GistCalculator();
+  @override
+  State<_GistCalculator> createState() => _GistCalculatorState();
+}
+
+class _GistCalculatorState extends State<_GistCalculator> {
+  final _sizeController = TextEditingController();
+  final _mitosisController = TextEditingController();
+  Map<String, dynamic>? _result;
+
+  void _calculate() {
+    double size = double.tryParse(_sizeController.text) ?? 0;
+    double mitosis = double.tryParse(_mitosisController.text) ?? 0;
+    setState(() {
+      _result = GeneralSurgeryLogic.assessGistRisk(
+        sizeCm: size,
+        mitoticCount: mitosis,
+      );
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          "GIST 風險評估 (小腸)",
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+        ),
+        const SizedBox(height: 10),
+        TextField(
+          controller: _sizeController,
+          keyboardType: TextInputType.number,
+          decoration: const InputDecoration(
+            labelText: '腫瘤大小 (cm)',
+            border: OutlineInputBorder(),
+          ),
+        ),
+        const SizedBox(height: 10),
+        TextField(
+          controller: _mitosisController,
+          keyboardType: TextInputType.number,
+          decoration: const InputDecoration(
+            labelText: '核分裂數 (per 50 HPF)',
+            border: OutlineInputBorder(),
+          ),
+        ),
+        const SizedBox(height: 10),
+        SizedBox(
+          width: double.infinity,
+          child: ElevatedButton(
+            onPressed: _calculate,
+            child: const Text('計算風險'),
+          ),
+        ),
+        if (_result != null)
+          Container(
+            margin: const EdgeInsets.only(top: 15),
+            padding: const EdgeInsets.all(12),
+            color: Colors.teal.shade50,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "風險分級: ${_result!['risk']}",
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
+                ),
+                const SizedBox(height: 5),
+                Text(
+                  _result!['action'],
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: _result!['action'].contains("🔴")
+                        ? Colors.red
+                        : Colors.green,
+                  ),
+                ),
+                const Divider(),
+                Text(
+                  _result!['detail'],
+                  style: const TextStyle(fontSize: 12, color: Colors.grey),
+                ),
+              ],
+            ),
+          ),
       ],
     );
   }

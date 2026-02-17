@@ -22,5 +22,5 @@ New-Item -ItemType Directory -Force -Path docs
 Copy-Item -Path "build\web\*" -Destination "docs" -Recurse -Force
 
 git add .
-git commit -m "Fix: Add missing UI for Ch24-Ch26"
+git commit -m
 git push

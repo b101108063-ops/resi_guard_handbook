@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'reference_sidebar.dart'; // ✅ 1. 匯入側邊欄元件
 import 'section_general.dart'; // 匯入緒論模組
 import 'section_surgery.dart'; // 匯入一般外科模組
+import 'section_neurosurgery.dart'; // 👈 匯入新模組
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -102,7 +103,7 @@ class HomeScreen extends StatelessWidget {
           const SizedBox(height: 8),
 
           // 其他專科 Placeholder
-          _buildPlaceholder(context, "神經外科 (NS)", "GCS, 頭部外傷..."),
+          const NeurosurgerySection(), // 👈 換成這個！實體化模組
           _buildPlaceholder(context, "整形外科 (PS)", "燒傷, 顯微手術..."),
           _buildPlaceholder(context, "心臟外科 (CVS)", "ECMO, 瓣膜置換..."),
 
