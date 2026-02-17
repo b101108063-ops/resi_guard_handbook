@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'reference_sidebar.dart'; // ✅ 1. 匯入側邊欄元件
 import 'section_general.dart'; // 匯入緒論模組
 import 'section_surgery.dart'; // 匯入一般外科模組
 
@@ -8,6 +9,9 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // ✅ 2. 加入側邊欄 (EndDrawer 會從右邊滑出)
+      endDrawer: const ReferenceSidebar(),
+
       appBar: AppBar(
         title: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -17,7 +21,7 @@ class HomeScreen extends StatelessWidget {
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             Text(
-              '住院醫師隨身助理 v2.1',
+              '住院醫師隨身助理 v2.2', // 更新版本號
               style: TextStyle(fontSize: 12, color: Colors.white70),
             ),
           ],
@@ -25,8 +29,22 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: const Color(0xFF00695C), // 醫療綠
         foregroundColor: Colors.white,
         actions: [
+          // ✅ 3. 新增「參考文獻」按鈕
+          // 使用 Builder 是為了讓 context 能找到 Scaffold 來打開 Drawer
+          Builder(
+            builder: (context) => IconButton(
+              icon: const Icon(Icons.library_books), // 書本圖示
+              tooltip: '參考文獻',
+              onPressed: () {
+                Scaffold.of(context).openEndDrawer(); // 打開右側邊欄
+              },
+            ),
+          ),
+
+          // 原本的更新日誌按鈕
           IconButton(
             icon: const Icon(Icons.info_outline),
+            tooltip: '更新日誌',
             onPressed: () => _showChangeLog(context),
           ),
         ],
@@ -177,47 +195,24 @@ class HomeScreen extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               _LogItem(
+                ver: "v2.2.0",
+                date: "New Feature",
+                content:
+                    "新增隨身圖書館 (Reference Library)：\n- 支援離線 PDF 閱讀\n- 收錄抗生素與疝氣相關指引\n- 點擊右上角書本圖示即可開啟",
+              ),
+              _LogItem(
+                ver: "v2.1.0",
+                date: "2024-05-30",
+                content:
+                    "新增疝氣完整章節 (Ch25-Ch26)：\n- 腹壁疝氣 (Mesh 層次圖解)\n- 鼠蹊部疝氣 (術式決策)\n- 絞扼性疝氣急診處置",
+              ),
+              _LogItem(
                 ver: "v2.0.0",
-                date: "Latest",
+                date: "2024-05-28",
                 content:
                     "新增肝膽胰完整章節 (Ch20-Ch23)：\n- 胰臟癌 (Whipple, POPF 計算)\n- 膽管癌 (Klatskin, PBD 引流)\n- 膽結石 (急性發作時機)\n- 門脈高壓 (Child-Pugh, HVPG)",
               ),
-              _LogItem(
-                ver: "v1.6.0",
-                date: "2024-05-25",
-                content:
-                    "營養計算機大升級：\n- 新增 ICU 急性/恢復期模式\n- 新增洗腎/CRRT 蛋白計算\n- 飲食質地與重症指引速查",
-              ),
-              _LogItem(
-                ver: "v1.5.0",
-                date: "2024-05-22",
-                content: "新增 Ch18 肝臟移植 (Milan/UCSF, GRWR)",
-              ),
-              _LogItem(
-                ver: "v1.4.0",
-                date: "2024-05-20",
-                content: "新增 Ch17 惡性肝腫瘤 (HCC, Makuuchi Criteria)",
-              ),
-              _LogItem(
-                ver: "v1.3.0",
-                date: "2024-05-18",
-                content: "新增 Ch16 肝臟良性腫瘤 (MRI 鑑別)",
-              ),
-              _LogItem(
-                ver: "v1.2.0",
-                date: "2024-05-15",
-                content: "新增 Ch12-15 消化系 (胃癌, 減重, GERD)",
-              ),
-              _LogItem(
-                ver: "v1.1.0",
-                date: "2024-05-10",
-                content: "新增 Ch10 乳房外科模組",
-              ),
-              _LogItem(
-                ver: "v1.0.0",
-                date: "2024-05-01",
-                content: "初始版本：緒論 Ch1-8 + 甲狀腺",
-              ),
+              // ... 舊的日誌可以保留或摺疊 ...
             ],
           ),
         ),

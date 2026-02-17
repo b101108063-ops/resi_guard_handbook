@@ -261,12 +261,14 @@ class _AntibioticCalculatorState extends State<_AntibioticCalculator> {
                   child: const Text('評估是否追加'),
                 ),
               ),
+
+              // ⚠️ 這裡已修正：加上 ?? '' 避免 Null 錯誤
               if (_redoseResult != null)
                 Container(
                   margin: const EdgeInsets.only(top: 8),
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: _redoseResult!['status']!.contains("🔴")
+                    color: (_redoseResult!['status'] ?? '').contains("🔴")
                         ? Colors.red.shade50
                         : Colors.green.shade50,
                     borderRadius: BorderRadius.circular(4),
@@ -323,7 +325,7 @@ class _AntibioticCalculatorState extends State<_AntibioticCalculator> {
 }
 
 // ==========================================
-// 2. 輸液計算機 (Fixed Null Safety Issue)
+// 2. 輸液計算機
 // ==========================================
 class _FluidCalculator extends StatefulWidget {
   const _FluidCalculator();
@@ -364,7 +366,7 @@ class _FluidCalculatorState extends State<_FluidCalculator> {
             separatorBuilder: (c, i) => const Divider(),
             itemBuilder: (c, i) {
               var f = fluids[i];
-              // ⚠️ 修正點：使用 ?? '' 確保字串不為 null，避免 .contains() 報錯
+              // ⚠️ 這裡也加上 ?? '' 確保安全
               String typeStr = f['type'] ?? '';
               Color typeColor = Colors.grey;
 
