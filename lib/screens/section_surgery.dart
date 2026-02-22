@@ -3,6 +3,7 @@ import '../logic/specialties/general_surgery.dart'; // 連結一般外科邏輯
 import 'chapters/ch28_appendix.dart';
 import 'chapters/ch29_hipec.dart';
 import 'chapters/ch30_peptic_ulcer.dart';
+import 'chapters/ch36_ssti.dart'; //
 
 class SurgerySection extends StatelessWidget {
   const SurgerySection({super.key});
@@ -160,6 +161,7 @@ class SurgerySection extends StatelessWidget {
           const Ch28AppendixTile(),
           const Ch29HipecTile(),
           const Ch30PepticUlcerTile(),
+          const Ch36SstiTile(),
         ],
       ),
     );
