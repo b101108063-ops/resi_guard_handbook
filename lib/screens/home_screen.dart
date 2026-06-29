@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'reference_sidebar.dart'; // ✅ 1. 匯入側邊欄元件
+import 'chapters/ch2_antibiotics.dart';
 import 'section_general.dart'; // 匯入緒論模組
 import 'section_surgery.dart'; // 匯入一般外科模組
 import 'section_neurosurgery.dart'; // 👈 匯入新模組
+import 'section_plastics.dart'; // 👈 匯入整外選單
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -91,6 +93,7 @@ class HomeScreen extends StatelessWidget {
           // ==============================
           _buildHeader(context, "Part I: 核心緒論 (General Principles)"),
           const GeneralSection(),
+          const Ch2AntibioticsTile(), // 👈 新增抗生素選項
 
           const SizedBox(height: 24),
 
@@ -104,7 +107,8 @@ class HomeScreen extends StatelessWidget {
 
           // 其他專科 Placeholder
           const NeurosurgerySection(), // 👈 換成這個！實體化模組
-          _buildPlaceholder(context, "整形外科 (PS)", "燒傷, 顯微手術..."),
+          const SizedBox(height: 8),
+          const PlasticSection(), // 👈 ✅ 換上實體化的整形外科選單！
           _buildPlaceholder(context, "心臟外科 (CVS)", "ECMO, 瓣膜置換..."),
 
           const SizedBox(height: 40),
